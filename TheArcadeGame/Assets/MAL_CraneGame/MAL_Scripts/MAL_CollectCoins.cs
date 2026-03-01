@@ -9,13 +9,11 @@ public class MAL_CollectCoins : MonoBehaviour
     private float time;
     [SerializeField] MAL_PickUpCube isBoxHeld;
     [SerializeField] GameObject goldSplash;
-    [SerializeField] private AudioClip SFX;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name.Contains("Box"))
         {
-            //Debug.Log(collision.GetComponent<Rigidbody2D>().velocity.magnitude);
             if (collision.GetComponent<Rigidbody2D>().linearVelocity.magnitude < 0.1)
             {
                 if (isBoxHeld.box == null || (isBoxHeld.box != null && isBoxHeld.box.name != collision.gameObject.name))
@@ -24,7 +22,6 @@ public class MAL_CollectCoins : MonoBehaviour
                     Debug.Log(time);
                     if (time >= 1)
                     {
-                        MAL_SFXManager.instance.PlaySoundFXClip(SFX, transform, 1f);
                         Instantiate(goldSplash, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -5), Quaternion.identity);
                         Destroy(gameObject);
                     }
