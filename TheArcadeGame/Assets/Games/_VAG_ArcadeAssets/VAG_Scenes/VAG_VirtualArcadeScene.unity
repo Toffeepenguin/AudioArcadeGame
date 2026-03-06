@@ -354834,6 +354834,7 @@ GameObject:
   - component: {fileID: 1660611166}
   - component: {fileID: 1660611162}
   - component: {fileID: 1660611167}
+  - component: {fileID: 1660611168}
   m_Layer: 0
   m_Name: VAG_ThePlayer
   m_TagString: Untagged
@@ -354920,8 +354921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanMove: 1
   IsInteracting: 0
-  SFXSTEPPlayer: {fileID: 0}
-  FootStep: {fileID: 8300000, guid: c9f8b23840bf4b142b2542008b9c60c2, type: 3}
   ArcadePositions:
   - {fileID: 1874604135}
   - {fileID: 5640156592292102707}
@@ -355020,7 +355019,6 @@ MonoBehaviour:
   CrossHair: {fileID: 668152764}
   MainMenu: {fileID: 343862118}
   PauseMenu: {fileID: 2815593710200574718}
-  MenuMusicSFX: {fileID: 0}
 --- !u!114 &1660611166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355055,6 +355053,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1660611168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660611161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1790335976
+      Data2: 1167420077
+      Data3: 1330736000
+      Data4: 764948034
+    Path: event:/Arcade/Coin Insert
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!43 &1662167424
 Mesh:
   m_ObjectHideFlags: 0

@@ -41,10 +41,10 @@ public class VAG_FPSController : MonoBehaviour
     float timer;
 
     [Header("Footstep Parameters")]
-    [SerializeField] AudioSource SFXSTEPPlayer;
+    //[SerializeField] AudioSource SFXSTEPPlayer;
     float StepsRateSpeed = 0.5f;
     float StepTimer;
-    [SerializeField] AudioClip FootStep;
+    //[SerializeField] AudioClip FootStep;
 
 
 
@@ -68,7 +68,7 @@ public class VAG_FPSController : MonoBehaviour
     bool GameIsPause;
     bool MainMenuActive;
     bool MenuMusicMuted;
-    [SerializeField] AudioSource MenuMusicSFX;
+    //[SerializeField] AudioSource MenuMusicSFX;
 
 
 
@@ -99,7 +99,7 @@ public class VAG_FPSController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             CanMove = false;
-            MenuMusicSFX.Play();
+            //MenuMusicSFX.Play();
 
             PlayerPrefs.SetInt("GAMEWASLAUNCHED", 1);
             PlayerPrefs.Save();
@@ -223,7 +223,7 @@ public class VAG_FPSController : MonoBehaviour
                 PlayerCamera.transform.localRotation = Quaternion.Euler(CurrentArcade.rotation.x, 0, 0);
                 transform.rotation = CurrentArcade.rotation;
                 transform.position = CurrentArcade.position;
-
+                GetComponent<FMODUnity.StudioEventEmitter>().Play();
 
                 
 
@@ -324,8 +324,8 @@ public class VAG_FPSController : MonoBehaviour
         {
             float rng = Random.Range(0.5f, 1.5f);
 
-            SFXSTEPPlayer.PlayOneShot(FootStep);
-            SFXSTEPPlayer.pitch = rng;
+            //SFXSTEPPlayer.PlayOneShot(FootStep);
+            //SFXSTEPPlayer.pitch = rng;
 
             StepTimer = 0.35f;
         }
@@ -357,7 +357,7 @@ public class VAG_FPSController : MonoBehaviour
         CanMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        MenuMusicSFX.Pause();
+        //MenuMusicSFX.Pause();
 
     }
 
