@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class MAL_PickUpCube : MonoBehaviour
 {
@@ -15,7 +13,8 @@ public class MAL_PickUpCube : MonoBehaviour
     private InputSubscription _Input;
 
     [SerializeField] GameObject Chain;
-    // Start is called before the first frame update
+
+    [SerializeField] EventReference PickupEvent;
     void Awake()
     {
         _Input = GameObject.Find("GameManager").GetComponent<InputSubscription>();
@@ -37,9 +36,9 @@ public class MAL_PickUpCube : MonoBehaviour
                 pickUp = true;
                 box.GetComponent<Rigidbody2D>().gravityScale = 0;
                 box.GetComponent<Rigidbody2D>().linearDamping = 5;
-
             }
             Performed = true;
+            RuntimeManager.PlayOneShot(PickupEvent);
         }
         else if (!_Input.SpaceInput && Performed) //Checks for release of space
         {
@@ -83,5 +82,14 @@ public class MAL_PickUpCube : MonoBehaviour
             box = null;
             isTouching = false;
         }
+    }
+
+    private void PlaySoundEffect()
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(PickupEvent);
+        //instance.setParameterByName();
+        instance.start();
+        instance.release();
+        
     }
 }
