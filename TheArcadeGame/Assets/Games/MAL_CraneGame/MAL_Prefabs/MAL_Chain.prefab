@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3988398112207546121}
   - component: {fileID: 2045526336126839756}
   - component: {fileID: 702439995706851109}
+  - component: {fileID: 1414720256316197138}
   m_Layer: 0
   m_Name: CheckerSphere
   m_TagString: Untagged
@@ -84,6 +85,46 @@ MonoBehaviour:
   pickUp: 0
   box: {fileID: 0}
   Chain: {fileID: 7901039744104867902}
+  PickupEvent:
+    Guid:
+      Data1: -1016339113
+      Data2: 1267815121
+      Data3: 2076903552
+      Data4: 641041314
+    Path: event:/CraneGameSounds/ChainPickup
+--- !u!114 &1414720256316197138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726885821234126025}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1016339113
+      Data2: 1267815121
+      Data3: 2076903552
+      Data4: 641041314
+    Path: event:/CraneGameSounds/ChainPickup
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: HasPickedUp
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7901039744104867902
 GameObject:
   m_ObjectHideFlags: 0
