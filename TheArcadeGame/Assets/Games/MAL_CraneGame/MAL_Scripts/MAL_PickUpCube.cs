@@ -25,20 +25,25 @@ public class MAL_PickUpCube : MonoBehaviour
     {
         if (_Input.SpaceInput && isTouching && !Performed)
         {
+            //GetComponent<FMODUnity.StudioEventEmitter>().Play();
             if (pickUp)
             {
                 pickUp = false;
                 box.GetComponent<Rigidbody2D>().gravityScale = 1;
                 box.GetComponent<Rigidbody2D>().linearDamping = 1;
+                PlaySoundEffect(PickupEvent, 1);
+                //RuntimeManager.PlayOneShot(PickupEvent);
             }
             else
             {
                 pickUp = true;
                 box.GetComponent<Rigidbody2D>().gravityScale = 0;
                 box.GetComponent<Rigidbody2D>().linearDamping = 5;
+                PlaySoundEffect(PickupEvent, 0);
+                //RuntimeManager.PlayOneShot(PickupEvent);
             }
             Performed = true;
-            RuntimeManager.PlayOneShot(PickupEvent);
+            
         }
         else if (!_Input.SpaceInput && Performed) //Checks for release of space
         {
@@ -84,10 +89,10 @@ public class MAL_PickUpCube : MonoBehaviour
         }
     }
 
-    private void PlaySoundEffect()
+    private void PlaySoundEffect(EventReference SoundEffect, int UpOrDown)
     {
         EventInstance instance = RuntimeManager.CreateInstance(PickupEvent);
-        //instance.setParameterByName();
+        instance.setParameterByName("HasPickedUp", UpOrDown);
         instance.start();
         instance.release();
         

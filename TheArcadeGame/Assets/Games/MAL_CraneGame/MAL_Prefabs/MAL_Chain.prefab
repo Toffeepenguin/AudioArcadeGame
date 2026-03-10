@@ -87,11 +87,11 @@ MonoBehaviour:
   Chain: {fileID: 7901039744104867902}
   PickupEvent:
     Guid:
-      Data1: -1016339113
-      Data2: 1267815121
-      Data3: 2076903552
-      Data4: 641041314
-    Path: event:/CraneGameSounds/ChainPickup
+      Data1: 1909379749
+      Data2: 1232567528
+      Data3: 597928323
+      Data4: -1380111682
+    Path: event:/CraneGameSounds/ChainPickup_001
 --- !u!114 &1414720256316197138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,11 +107,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1016339113
-      Data2: 1267815121
-      Data3: 2076903552
-      Data4: 641041314
-    Path: event:/CraneGameSounds/ChainPickup
+      Data1: 1909379749
+      Data2: 1232567528
+      Data3: 597928323
+      Data4: -1380111682
+    Path: event:/CraneGameSounds/ChainPickup_001
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
