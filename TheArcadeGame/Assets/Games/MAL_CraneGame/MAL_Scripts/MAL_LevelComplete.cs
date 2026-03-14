@@ -31,6 +31,7 @@ public class MAL_LevelComplete : MonoBehaviour
         }
         if (done && _Input.SpaceInput)
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Select");
         }
     }

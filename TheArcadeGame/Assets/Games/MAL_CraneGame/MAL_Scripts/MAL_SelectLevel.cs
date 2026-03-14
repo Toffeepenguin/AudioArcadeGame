@@ -21,6 +21,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level1");
         }
     }
@@ -28,6 +29,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level2");
         }
     }
@@ -35,6 +37,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level3");
         }
     }
@@ -42,6 +45,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level4");
         }
     }
@@ -49,6 +53,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level5");
         }
     }
@@ -56,6 +61,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level6");
         }
     }
@@ -63,6 +69,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene("MAL_Level7");
         }
     }
@@ -71,6 +78,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             Instantiate(Settings);
         }
     }
@@ -78,6 +86,7 @@ public class MAL_SelectLevel : MonoBehaviour
     {
         if (!GameObject.Find("MAL_Settings(Clone)") && !GameObject.Find("MAL_Exit(Clone)"))
         {
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             Instantiate(Exit);
             startCount = true;
         }
@@ -101,7 +110,7 @@ public class MAL_SelectLevel : MonoBehaviour
 
         if (_Input.ConfirmInput && GameObject.Find("MAL_Exit(Clone)") && counter >= 5)
         {
-            Debug.Log("Si");
+            MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
             SceneManager.LoadScene(0);
             //Application.Quit();
         } //Another Menu like level complete (enter to esc) or (esc to quit) 

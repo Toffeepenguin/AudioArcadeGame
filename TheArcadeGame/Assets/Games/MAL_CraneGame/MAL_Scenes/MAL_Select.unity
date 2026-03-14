@@ -484,18 +484,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &457760175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,18 +609,6 @@ MonoBehaviour:
       - m_Target: {fileID: 33349685}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: LoadLevel5
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1117,18 +1093,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &759042797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,18 +1227,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &841777189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,18 +1352,6 @@ MonoBehaviour:
       - m_Target: {fileID: 33349685}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: LoadLevel1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1818,18 +1758,6 @@ MonoBehaviour:
       - m_Target: {fileID: 33349685}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: LoadLevel3
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2818,18 +2746,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &1767115453
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2925,18 +2841,6 @@ MonoBehaviour:
       - m_Target: {fileID: 33349685}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: LoadLevel7
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3069,18 +2973,6 @@ MonoBehaviour:
       - m_Target: {fileID: 33349685}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: LoadExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1327152410}
-        m_TargetAssemblyTypeName: MAL_MenuSoundEffects, Test
-        m_MethodName: CraneGameSelectLevel_SFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

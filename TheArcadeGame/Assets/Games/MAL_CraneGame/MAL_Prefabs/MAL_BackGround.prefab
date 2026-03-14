@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7708057184843884268}
   - component: {fileID: 1662912033479224245}
-  - component: {fileID: -8716783285319086101}
   m_Layer: 0
   m_Name: MAL_BackGround
   m_TagString: Untagged
@@ -50,6 +49,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,16 +87,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8716783285319086101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623345724703661188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee43624005446ce4fbf9bb6dfa50c0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SFXObject: {fileID: 112122564665215770, guid: 33894b99f34ad144db0179ea5790bc46, type: 3}
