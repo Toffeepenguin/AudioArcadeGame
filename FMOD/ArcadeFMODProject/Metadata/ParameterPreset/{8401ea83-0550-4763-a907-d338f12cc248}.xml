@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{8401ea83-0550-4763-a907-d338f12cc248}">
+		<property name="name">
+			<value>ChainMovements</value>
+		</property>
+		<relationship name="folder">
+			<destination>{775a0bd9-bda2-42ca-a2a9-2aed25c1a337}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0dfee025-2e9c-4c2b-8607-3722647a20c6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0dfee025-2e9c-4c2b-8607-3722647a20c6}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
