@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
 
 public class MAL_MoveChain : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class MAL_MoveChain : MonoBehaviour
 
     public MAL_PickUpCube CubePickUp;
     Vector2 PlayerInput = Vector2.zero;
+
+    [SerializeField] EventReference MovementEvent;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,6 +47,7 @@ public class MAL_MoveChain : MonoBehaviour
                 Rb.AddForce(PlayerInput * 35);
             }
         }
+        PlaySoundEffect(MovementEvent, Mathf.Abs(Rb.linearVelocity.x));
     }
     private void Update()
     {
@@ -68,5 +73,13 @@ public class MAL_MoveChain : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+
+    private void PlaySoundEffect(EventReference SoundEffect, float Speed)
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(MovementEvent);
+        instance.setParameterByName("ChainSpeed", Speed);
+        instance.start();
     }
 }

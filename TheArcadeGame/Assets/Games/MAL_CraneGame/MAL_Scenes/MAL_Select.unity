@@ -1965,7 +1965,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1327152408}
   - component: {fileID: 1327152407}
-  - component: {fileID: 1327152410}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2000,25 +1999,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1327152410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327152406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c4d955350ae41969e087317d1ffa79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CraneGameMenuSFX:
-    Guid:
-      Data1: -1790335976
-      Data2: 1167420077
-      Data3: 1330736000
-      Data4: 764948034
-    Path: event:/Arcade/Coin Insert
 --- !u!1 &1440954921
 GameObject:
   m_ObjectHideFlags: 0

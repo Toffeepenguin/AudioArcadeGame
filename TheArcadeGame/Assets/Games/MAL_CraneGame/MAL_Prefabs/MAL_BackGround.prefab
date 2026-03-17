@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7708057184843884268}
   - component: {fileID: 1662912033479224245}
+  - component: {fileID: 6609828663827469789}
   m_Layer: 0
   m_Name: MAL_BackGround
   m_TagString: Untagged
@@ -87,3 +88,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6609828663827469789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623345724703661188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c4d955350ae41969e087317d1ffa79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CraneGameMenuSFX:
+    Guid:
+      Data1: -2130536811
+      Data2: 1279582751
+      Data3: -1000854885
+      Data4: 1980091684
+    Path: event:/Menu Sounds/CraneMenuClick

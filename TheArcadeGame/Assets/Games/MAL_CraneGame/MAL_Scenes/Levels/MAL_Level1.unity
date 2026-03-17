@@ -990,6 +990,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1195862416794212616, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: MovementEvent.Path
+      value: event:/CraneGameSounds/ChainMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195862416794212616, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: MovementEvent.Guid.Data1
+      value: 1896245197
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195862416794212616, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: MovementEvent.Guid.Data2
+      value: 1321148608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195862416794212616, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: MovementEvent.Guid.Data3
+      value: 1722253478
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195862416794212616, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: MovementEvent.Guid.Data4
+      value: 1640875674
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414720256316197138, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3683199852762553745, guid: 38221714bd6669e498ba9e64dc900bad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
