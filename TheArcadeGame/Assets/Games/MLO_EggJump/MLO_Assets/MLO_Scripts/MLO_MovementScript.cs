@@ -1,10 +1,7 @@
 using System;
-using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class MLO_MovementScript : MonoBehaviour
 {
@@ -25,8 +22,11 @@ public class MLO_MovementScript : MonoBehaviour
     public GameObject input_manager;
     InputSubscription _input;
 
-    public AudioSource jump_sound;
-    public AudioSource fall_sound;
+    //public AudioSource jump_sound;
+    //public AudioSource fall_sound;
+    public EventReference FMOD_jump_sound;
+    public EventReference FMOD_fall_sound;
+    public EventReference FMOD_land_sound;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,8 @@ public class MLO_MovementScript : MonoBehaviour
         {
             dead = true;
             time = 0;
-            fall_sound.Play();
+            //fall_sound.Play();
+            FMODAudioUtilsObject.Get3DAttRef(FMOD_fall_sound, gameObject);
         }
 
         if (!move && !dead) // stationary, ready for input
@@ -72,7 +73,8 @@ public class MLO_MovementScript : MonoBehaviour
 
             if (move)
             {
-                jump_sound.Play();
+                //jump_sound.Play();
+                FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
             }
         }
 
@@ -107,6 +109,7 @@ public class MLO_MovementScript : MonoBehaviour
                 if (colliding) // final precaution to make sure the player succeeded
                 {
                     game_handler_script.IncreaseScoreLevel(new Vector3(end_position.x, end_position.y - .85f, end_position.z));
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_fall_sound, gameObject);
                 }
             }
         }
