@@ -14,12 +14,13 @@ public class MAL_MoveChain : MonoBehaviour
     public MAL_PickUpCube CubePickUp;
     Vector2 PlayerInput = Vector2.zero;
 
-    [SerializeField] EventReference MovementEvent;
+    private FMODUnity.StudioEventEmitter ChainSoundEmitter;
     // Start is called before the first frame update
     void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         _Input = GameObject.Find("GameManager").GetComponent<InputSubscription>();
+        ChainSoundEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -47,7 +48,11 @@ public class MAL_MoveChain : MonoBehaviour
                 Rb.AddForce(PlayerInput * 35);
             }
         }
-        PlaySoundEffect(MovementEvent, Mathf.Abs(Rb.linearVelocity.x));
+        if (ChainSoundEmitter != null)
+        {
+            ChainSoundEmitter.SetParameter("ChainSpeed", Mathf.Abs(Rb.linearVelocityX));
+            Debug.Log(ChainSoundEmitter.Params[0].Name);
+        }
     }
     private void Update()
     {
@@ -73,13 +78,5 @@ public class MAL_MoveChain : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-
-    private void PlaySoundEffect(EventReference SoundEffect, float Speed)
-    {
-        EventInstance instance = RuntimeManager.CreateInstance(MovementEvent);
-        instance.setParameterByName("ChainSpeed", Speed);
-        instance.start();
     }
 }
