@@ -42,16 +42,13 @@ public class MAL_MoveChain : MonoBehaviour
             if (CubePickUp.pickUp == true)
             {
                 CubePickUp.box.GetComponent<Rigidbody2D>().AddForce(PlayerInput * 35);
+                EditChainSpeedParam(CubePickUp.box.GetComponent<Rigidbody2D>());
             }
             else
             {
                 Rb.AddForce(PlayerInput * 35);
+                EditChainSpeedParam(Rb);
             }
-        }
-        if (ChainSoundEmitter != null)
-        {
-            ChainSoundEmitter.SetParameter("ChainSpeed", Mathf.Abs(Rb.linearVelocityX));
-            Debug.Log(ChainSoundEmitter.Params[0].Name);
         }
     }
     private void Update()
@@ -77,6 +74,15 @@ public class MAL_MoveChain : MonoBehaviour
         if (_Input.ConfirmInput)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+
+    private void EditChainSpeedParam(Rigidbody2D rb)
+    {
+        if (ChainSoundEmitter != null)
+        {
+            ChainSoundEmitter.SetParameter("ChainSpeed", Mathf.Abs(rb.linearVelocityX * rb.mass));
         }
     }
 }

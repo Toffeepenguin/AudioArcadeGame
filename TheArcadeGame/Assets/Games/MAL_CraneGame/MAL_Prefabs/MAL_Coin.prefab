@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBoxHeld: {fileID: 0}
   goldSplash: {fileID: 781887746090915950, guid: bc038b0e55586ab41affa398503fddf6, type: 3}
-  SFX: {fileID: 8300000, guid: 163411613bc0d8747a8ac9d866630c2f, type: 3}
+  CoinCollectSound: {fileID: -8378519028405399183}
 --- !u!114 &-8378519028405399183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
       Data4: 2028824256
     Path: event:/CraneGameSounds/BoxHit
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0

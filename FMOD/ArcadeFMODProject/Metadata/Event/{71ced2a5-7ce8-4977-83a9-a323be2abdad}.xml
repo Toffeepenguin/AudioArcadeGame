@@ -84,6 +84,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{470966d6-f077-4c9b-9f0b-8f85be76f8b5}">
+		<property name="volume">
+			<value>-7.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{a8b8128d-1dac-4a2e-a3c9-4c03d01181bd}</destination>
 		</relationship>
@@ -99,7 +102,6 @@
 		<property name="startOffset">
 			<value>10</value>
 		</property>
-		<property name="name" />
 		<property name="pitch">
 			<value>-1</value>
 		</property>
@@ -111,7 +113,6 @@
 		<property name="start">
 			<value>1</value>
 		</property>
-		<property name="name" />
 		<property name="pitch">
 			<value>3</value>
 		</property>

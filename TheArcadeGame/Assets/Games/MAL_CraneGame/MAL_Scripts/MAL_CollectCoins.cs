@@ -9,6 +9,7 @@ public class MAL_CollectCoins : MonoBehaviour
     private float time;
     [SerializeField] MAL_PickUpCube isBoxHeld;
     [SerializeField] GameObject goldSplash;
+    [SerializeField] FMODUnity.StudioEventEmitter CoinCollectSound;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -23,6 +24,7 @@ public class MAL_CollectCoins : MonoBehaviour
                     if (time >= 1)
                     {
                         Instantiate(goldSplash, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -5), Quaternion.identity);
+                        CoinCollectSound.Play();
                         Destroy(gameObject);
                     }
                 }
