@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{9b988153-f992-43a2-8aa1-fb10c5c1012d}">
+		<property name="name">
+			<value>BoxHitSpeed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{775a0bd9-bda2-42ca-a2a9-2aed25c1a337}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a98ca375-2483-4abd-ab21-ef94828c9e7f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a98ca375-2483-4abd-ab21-ef94828c9e7f}">
+		<property name="maximum">
+			<value>10</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

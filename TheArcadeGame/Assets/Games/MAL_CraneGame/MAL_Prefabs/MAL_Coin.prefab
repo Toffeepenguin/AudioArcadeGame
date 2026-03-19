@@ -184,7 +184,7 @@ MonoBehaviour:
       Data2: 1323748626
       Data3: 128779676
       Data4: 2028824256
-    Path: event:/CraneGameSounds/BoxHit
+    Path: event:/CraneGameSounds/CoinCollection
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

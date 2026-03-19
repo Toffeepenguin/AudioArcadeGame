@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: -6719409016447837068}
   - component: {fileID: -1809005474165408408}
   - component: {fileID: 4974873274741217864}
+  - component: {fileID: -5121064890947399306}
+  - component: {fileID: 7224702997850999713}
   m_Layer: 0
   m_Name: MAL_Box
   m_TagString: Interactable
@@ -162,3 +164,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5121064890947399306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947551176784069371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c95d8594f4c5245b75b4a997caf85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoxHit: {fileID: 7224702997850999713}
+--- !u!114 &7224702997850999713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947551176784069371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -308021686
+      Data2: 1117219067
+      Data3: 1150942097
+      Data4: 950588749
+    Path: event:/CraneGameSounds/BoxHit
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: BoxHitSpeed
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
