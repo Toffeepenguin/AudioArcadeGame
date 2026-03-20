@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 762399907502abf42897eabe64627a82, type: 3}
+    - target: {fileID: -5121064890947399306, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
+      propertyPath: boxHitEvent.Path
+      value: event:/CraneGameSounds/MetalHit
+      objectReference: {fileID: 0}
+    - target: {fileID: -5121064890947399306, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
+      propertyPath: boxHitEvent.Guid.Data1
+      value: 99559156
+      objectReference: {fileID: 0}
+    - target: {fileID: -5121064890947399306, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
+      propertyPath: boxHitEvent.Guid.Data2
+      value: 1209983036
+      objectReference: {fileID: 0}
+    - target: {fileID: -5121064890947399306, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
+      propertyPath: boxHitEvent.Guid.Data3
+      value: 1567343262
+      objectReference: {fileID: 0}
+    - target: {fileID: -5121064890947399306, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
+      propertyPath: boxHitEvent.Guid.Data4
+      value: 1291840926
+      objectReference: {fileID: 0}
     - target: {fileID: 4974873274741217864, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
       propertyPath: m_Mass
       value: 2
@@ -58,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7947551176784069371, guid: adec5f022fa4a3b448f670448b2c87e1, type: 3}
       propertyPath: m_Name
-      value: MetalBox
+      value: MAL_MetalBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

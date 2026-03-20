@@ -1,11 +1,12 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class MAL_BoxSoundTrigger : MonoBehaviour
 {
-    [SerializeField] FMODUnity.StudioEventEmitter BoxHit;
-
     private Rigidbody2D rb;
     private float maxSpeedSinceLastHit;
+    [SerializeField] EventReference boxHitEvent;
 
     private void Awake()
     {
@@ -18,9 +19,21 @@ public class MAL_BoxSoundTrigger : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BoxHit.SetParameter("BoxHitSpeed", maxSpeedSinceLastHit);
-        BoxHit.Play();
+        if (!collision.gameObject.name.Contains("Chain") && !collision.gameObject.name.Contains("Water"))
+        {
+            Debug.Log(maxSpeedSinceLastHit + " " + gameObject.name);
+            PlaySoundEffect(boxHitEvent);
+            maxSpeedSinceLastHit = 0;
+        }
+    }
 
-        maxSpeedSinceLastHit = 0;
+
+    private void PlaySoundEffect(EventReference SoundEffect)
+    {
+        EventInstance instance = RuntimeManager.CreateInstance(SoundEffect);
+        instance.setParameterByName("BoxHitSpeed", maxSpeedSinceLastHit);
+        instance.start();
+        instance.release();
+
     }
 }

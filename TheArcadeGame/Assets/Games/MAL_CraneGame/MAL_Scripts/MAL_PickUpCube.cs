@@ -91,7 +91,7 @@ public class MAL_PickUpCube : MonoBehaviour
 
     private void PlaySoundEffect(EventReference SoundEffect, int UpOrDown)
     {
-        EventInstance instance = RuntimeManager.CreateInstance(PickupEvent);
+        EventInstance instance = RuntimeManager.CreateInstance(SoundEffect);
         instance.setParameterByName("HasPickedUp", UpOrDown);
         instance.start();
         instance.release();

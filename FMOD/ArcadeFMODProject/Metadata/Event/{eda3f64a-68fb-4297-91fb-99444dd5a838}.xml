@@ -89,8 +89,11 @@
 		<property name="isCutoff">
 			<value>true</value>
 		</property>
+		<property name="start">
+			<value>0.5</value>
+		</property>
 		<property name="length">
-			<value>10</value>
+			<value>9.5000000000000018</value>
 		</property>
 		<property name="volume">
 			<value>1</value>
@@ -126,7 +129,7 @@
 	<object class="MixerBusFader" id="{e744a374-01e3-40ea-8eb3-d3abe1859915}" />
 	<object class="AutomationPoint" id="{a2a26fb3-e03f-4cf2-9635-1ebdf603828c}">
 		<property name="position">
-			<value>0</value>
+			<value>0.5</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -137,7 +140,7 @@
 	</object>
 	<object class="AutomationPoint" id="{43bbef15-8675-463c-952d-34dd750da8c7}">
 		<property name="position">
-			<value>1</value>
+			<value>4</value>
 		</property>
 		<property name="value">
 			<value>1</value>
