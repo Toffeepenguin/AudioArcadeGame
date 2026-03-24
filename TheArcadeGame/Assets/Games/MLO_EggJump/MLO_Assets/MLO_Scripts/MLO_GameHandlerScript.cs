@@ -126,7 +126,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
         if (score > Mathf.Pow((float)level+1, 2) * 10) 
         {
             //level_sound.Play();
-            FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, gameObject);
+            FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
 
             // increment level
             level++;

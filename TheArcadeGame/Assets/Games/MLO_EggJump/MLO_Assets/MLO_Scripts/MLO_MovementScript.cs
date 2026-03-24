@@ -54,27 +54,29 @@ public class MLO_MovementScript : MonoBehaviour
             {
                 end_position = new Vector3(start_position.x, start_position.y, start_position.z + 4);
                 move = true;
+                FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+
             }
             else if (_input.AnalogMovementInput.x > .9)
             {
                 end_position = new Vector3(start_position.x + 4, start_position.y, start_position.z);
                 move = true;
+                FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+
             }
             else if (_input.AnalogMovementInput.y < -.9)
             {
                 end_position = new Vector3(start_position.x, start_position.y, start_position.z - 4);
                 move = true;
+                FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+
             }
             else if (_input.AnalogMovementInput.x < -.9)
             {
                 end_position = new Vector3(start_position.x - 4, start_position.y, start_position.z);
                 move = true;
-            }
-
-            if (move)
-            {
-                //jump_sound.Play();
                 FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+
             }
         }
 
