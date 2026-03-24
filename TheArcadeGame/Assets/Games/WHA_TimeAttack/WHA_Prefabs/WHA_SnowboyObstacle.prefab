@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRender: {fileID: 1886614747693445}
   boxCol: {fileID: 6254346815643862846}
+  SoundEmitter: {fileID: 6298813029528896181, guid: 4c12c8148b67343e6be1eab4346dec50, type: 3}
   path: {fileID: 0}
   speed: 3
   rotationSpeed: 5
@@ -4853,6 +4854,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4967,6 +4971,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
