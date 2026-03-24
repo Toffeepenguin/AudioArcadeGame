@@ -40,12 +40,6 @@ public class VAG_FPSController : MonoBehaviour
     float CamPosY = 1.75f;
     float timer;
 
-    [Header("Footstep Parameters")]
-    //[SerializeField] AudioSource SFXSTEPPlayer;
-    float StepsRateSpeed = 0.5f;
-    float StepTimer;
-    //[SerializeField] AudioClip FootStep;
-
 
 
     [Header("Interaction")]
@@ -67,8 +61,6 @@ public class VAG_FPSController : MonoBehaviour
     [SerializeField] GameObject PauseMenu;
     bool GameIsPause;
     bool MainMenuActive;
-    bool MenuMusicMuted;
-    //[SerializeField] AudioSource MenuMusicSFX;
 
 
 
@@ -99,8 +91,6 @@ public class VAG_FPSController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             CanMove = false;
-            //MenuMusicSFX.Play();
-
             PlayerPrefs.SetInt("GAMEWASLAUNCHED", 1);
             PlayerPrefs.Save();
         }
@@ -154,8 +144,6 @@ public class VAG_FPSController : MonoBehaviour
             HandleMouseLook();
 
             HandleHeadBob();
-          
-            HandleFootsteps();
 
             ApplyFinalMovements();
         }
@@ -303,33 +291,6 @@ public class VAG_FPSController : MonoBehaviour
 
 
     }
-    
-
-
-
-    private void HandleFootsteps()
-    {
-        if (!characterController.isGrounded) 
-        { 
-            return; 
-        }
-        if (CurrentInput == Vector2.zero)
-        {
-            return;
-        }
-
-        StepTimer -= Time.deltaTime;
-
-        if (StepTimer <= 0)
-        {
-            float rng = Random.Range(0.5f, 1.5f);
-
-            //SFXSTEPPlayer.PlayOneShot(FootStep);
-            //SFXSTEPPlayer.pitch = rng;
-
-            StepTimer = 0.35f;
-        }
-    }
 
     private void ApplyFinalMovements()
     {
@@ -357,7 +318,6 @@ public class VAG_FPSController : MonoBehaviour
         CanMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //MenuMusicSFX.Pause();
 
     }
 

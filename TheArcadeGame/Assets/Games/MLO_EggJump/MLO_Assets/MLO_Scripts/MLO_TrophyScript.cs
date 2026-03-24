@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
+using FMODUnity;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class MLO_TrophyScript : MonoBehaviour
 {
     public GameObject death_particle;
-    AudioSource trophy_sound;
-
+    //AudioSource trophy_sound;
+    public EventReference FMOD_trophy_sound;
     public GameObject trophyUI;
     MLO_TrophyUIScript trophy_UI_script;
 
@@ -17,10 +13,10 @@ public class MLO_TrophyScript : MonoBehaviour
     float spawn_time = 0f;
     bool spawn = false;
     bool collected = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-        trophy_sound = GetComponent<AudioSource>();
+        //trophy_sound = GetComponent<AudioSource>();
         trophy_UI_script = trophyUI.GetComponent<MLO_TrophyUIScript>();
         transform.position = new Vector3(0, y_pos, 0);
     }
@@ -53,7 +49,8 @@ public class MLO_TrophyScript : MonoBehaviour
         {
             collected = true;
             spawn_time = Time.time;
-            trophy_sound.Play();
+            //trophy_sound.Play();
+            FMODAudioUtilsObject.Get3DAttRef(FMOD_trophy_sound, gameObject);
             trophy_UI_script.RunUI();
             Instantiate(death_particle, transform.position, Quaternion.identity);
             death_particle.GetComponent<ParticleSystem>().Emit(1);

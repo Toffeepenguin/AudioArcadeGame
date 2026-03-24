@@ -9,15 +9,18 @@ public class MAL_DestroyBox : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("Box"))
         {
-            Instantiate(splash, new Vector3(collision.transform.position.x, collision.transform.position.y - 0.75f, -5), Quaternion.identity);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Contains("Box"))
-        {
-            Destroy(collision.gameObject);
+            if (collision.transform.position.y + collision.transform.localScale.y/2 < -5.25)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                if (collision.transform.position.y + collision.transform.localScale.y / 2 < -2.75)
+                {
+                    MAL_SFXManager.instance.PlaySoundFXClip(SFX, transform, 1f);
+                }
+                Instantiate(splash, new Vector3(collision.transform.position.x, collision.transform.position.y-0.75f, -5), Quaternion.identity);
+            }
         }
     }
 }

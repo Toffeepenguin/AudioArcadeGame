@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 
@@ -45,7 +44,9 @@ public class MLO_GameHandlerScript : MonoBehaviour
     public GameObject help_UI;
     MLO_HelpScript help_script;
    
-    public AudioSource level_sound;
+    //public AudioSource level_sound;
+    public EventReference FMOD_level_sound;
+
     float speed_multiplier = 2.66f;
 
     // Start is called before the first frame update
@@ -124,7 +125,8 @@ public class MLO_GameHandlerScript : MonoBehaviour
 
         if (score > Mathf.Pow((float)level+1, 2) * 10) 
         {
-            level_sound.Play();
+            //level_sound.Play();
+            FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
 
             // increment level
             level++;
