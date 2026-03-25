@@ -21,7 +21,6 @@ public class MAL_BoxSoundTrigger : MonoBehaviour
     {
         if (!collision.gameObject.name.Contains("Chain") && !collision.gameObject.name.Contains("Water"))
         {
-            Debug.Log(maxSpeedSinceLastHit + " " + gameObject.name);
             PlaySoundEffect(boxHitEvent);
             maxSpeedSinceLastHit = 0;
         }
@@ -32,6 +31,8 @@ public class MAL_BoxSoundTrigger : MonoBehaviour
     {
         EventInstance instance = RuntimeManager.CreateInstance(SoundEffect);
         instance.setParameterByName("BoxHitSpeed", maxSpeedSinceLastHit);
+        instance.setParameterByName("BoxPosition", (transform.position.x + 8.33f) / 16.66f);
+        Debug.Log((transform.position.x + 8.33f) / 16.66f);
         instance.start();
         instance.release();
 
