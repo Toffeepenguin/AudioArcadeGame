@@ -94,6 +94,7 @@ public class KCY_Enemy : MonoBehaviour
             bulletInst = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
             //bulletInst.transform.Rotate(new Vector3(0, 0, 90));
             shootSource.Play();
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/ShootingSFX");
             interval = Random.Range(2, 5);
             timer = 0.0f;
         }
