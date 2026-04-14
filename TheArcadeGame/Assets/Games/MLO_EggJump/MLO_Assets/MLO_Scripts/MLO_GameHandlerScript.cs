@@ -46,6 +46,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
    
     //public AudioSource level_sound;
     public EventReference FMOD_level_sound;
+    public EventReference FMOD_coin_sound;
 
     float speed_multiplier = 2.66f;
 
@@ -75,6 +76,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
     public void StartGame()
     {
         started = true;
+        FMODAudioUtilsObject.GetUnattenuatedRef(FMOD_coin_sound);
         help_script.StopHelp();
         wait = false;
         platform_handler.play_game = true;

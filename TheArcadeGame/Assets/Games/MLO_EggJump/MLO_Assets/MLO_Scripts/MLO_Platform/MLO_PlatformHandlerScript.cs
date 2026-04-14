@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class MLO_PlatformHandlerScript : MonoBehaviour
@@ -23,6 +24,8 @@ public class MLO_PlatformHandlerScript : MonoBehaviour
 
     public GameObject trophy;
     MLO_TrophyScript trophy_script;
+
+    public EventReference FMOD_platform_rise_sound;
 
     // Start is called before the first frame update
     void Start()
@@ -140,7 +143,7 @@ public class MLO_PlatformHandlerScript : MonoBehaviour
             trophy_spawned = true;
             trophy_script.SpawnTrophy(location);
         }
-
+        FMODAudioUtilsObject.Get3DAttRef(FMOD_platform_rise_sound, platformList[start].gameObject);
         // destroy the oldest platform
         Destroy(platformList[mod((start - num_of_platforms), platformList.Length)]); 
         platformList[mod((start - num_of_platforms), (platformList.Length))] = null;  // set it to null in the list
