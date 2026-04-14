@@ -354835,6 +354835,7 @@ GameObject:
   - component: {fileID: 1660611162}
   - component: {fileID: 1660611167}
   - component: {fileID: 1660611168}
+  - component: {fileID: 1660611169}
   m_Layer: 0
   m_Name: VAG_ThePlayer
   m_TagString: Untagged
@@ -355068,11 +355069,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1790335976
-      Data2: 1167420077
-      Data3: 1330736000
-      Data4: 764948034
-    Path: event:/Arcade/Coin Insert
+      Data1: 1413936005
+      Data2: 1323748626
+      Data3: 128779676
+      Data4: 2028824256
+    Path: event:/CraneGameSounds/BoxHit
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -355082,8 +355083,31 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1660611169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660611161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673cb110c51b14b6aa397ac33cc33999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  final_footstep_threshold: 1
+  maximum_rotation_amplitude: 30
+  maximum_elevation: 1
+  minimum_stride_distance: 1
+  footstepHandler:
+    Guid:
+      Data1: 830913152
+      Data2: 1289230785
+      Data3: 2074387856
+      Data4: 628120914
+    Path: event:/Footsteps/CharacterFootsteps
 --- !u!43 &1662167424
 Mesh:
   m_ObjectHideFlags: 0
