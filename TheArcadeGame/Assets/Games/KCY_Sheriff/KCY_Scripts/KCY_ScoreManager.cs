@@ -51,6 +51,6 @@ public class KCY_ScoreManager : MonoBehaviour
             }
         }
 
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/ScoreIncreaseSFX");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/ScoreIncreaseSFX"); // Play SFX through FMOD once
     }
 }

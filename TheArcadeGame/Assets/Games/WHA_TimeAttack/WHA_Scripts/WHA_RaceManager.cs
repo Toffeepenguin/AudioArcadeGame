@@ -84,6 +84,7 @@ public class WHA_RaceManager : MonoBehaviour
     {
         // Show countdown text
         countdownText.gameObject.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Countdown"); // Play SFX through FMOD once
 
         for (int i = (int)countdownTime; i > 0; i--)
         {
