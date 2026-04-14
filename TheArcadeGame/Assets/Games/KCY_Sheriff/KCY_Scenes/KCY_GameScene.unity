@@ -396,7 +396,7 @@ MonoBehaviour:
       Data2: 1275117599
       Data3: -543944039
       Data4: 191070756
-    Path: event:/Sherrif Music
+    Path: event:/SherrifGame/Sherrif Music
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 2
