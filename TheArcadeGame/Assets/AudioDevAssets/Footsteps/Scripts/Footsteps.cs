@@ -13,7 +13,7 @@ public class Footsteps : MonoBehaviour
     public float maximum_rotation_amplitude;
     public float maximum_elevation;
     public float minimum_stride_distance;
-    [SerializeField] private EventReference footstepHandler;
+    [SerializeField] private EventReference footstep_sound;
 
     [Header("Outputs")]
     private int side;
@@ -74,7 +74,7 @@ public class Footsteps : MonoBehaviour
         //dond need this anymore
         //GetComponent<FMODUnity.StudioEventEmitter>().Play();
         //Use this to play sound instead
-        var eventInstance = RuntimeManager.CreateInstance(footstepHandler);
+        var eventInstance = RuntimeManager.CreateInstance(footstep_sound);
         //This is needed to select the audio from bank and then selecting the parameter
         eventInstance.setParameterByNameWithLabel("CharacterFootsteps", "Value A");
 
