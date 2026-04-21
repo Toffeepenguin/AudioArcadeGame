@@ -183,6 +183,13 @@ MonoBehaviour:
       Data3: 2035016121
       Data4: -1540097551
     Path: event:/EggJumpSounds/PlayerLevel
+  FMOD_coin_sound:
+    Guid:
+      Data1: -348598910
+      Data2: 1205206825
+      Data3: -1267105607
+      Data4: -159843382
+    Path: event:/EggJumpSounds/EnterCoin
 --- !u!114 &20117546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +301,13 @@ MonoBehaviour:
   play_game: 0
   game_handler: {fileID: 20117543}
   trophy: {fileID: 1640506084}
+  FMOD_platform_rise_sound:
+    Guid:
+      Data1: 1620925130
+      Data2: 1177681670
+      Data3: -1817679949
+      Data4: 1229160181
+    Path: event:/EggJumpSounds/PlatformRise
 --- !u!4 &262357024
 Transform:
   m_ObjectHideFlags: 0
