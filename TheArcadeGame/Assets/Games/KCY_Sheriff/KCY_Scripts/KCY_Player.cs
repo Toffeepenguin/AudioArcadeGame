@@ -178,7 +178,9 @@ public class KCY_Player : MonoBehaviour
         {
             gameOver = true;
             gameManager.GetComponent<KCY_GameOver>().EndGame();
-            
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/Death SFX"); // Play SFX through FMOD once
+
+
             //SceneManager.LoadScene("GameOver");
         }
 
