@@ -103,6 +103,9 @@
 		<property name="length">
 			<value>9.5000000000000018</value>
 		</property>
+		<property name="startOffset">
+			<value>15</value>
+		</property>
 		<property name="volume">
 			<value>1</value>
 		</property>

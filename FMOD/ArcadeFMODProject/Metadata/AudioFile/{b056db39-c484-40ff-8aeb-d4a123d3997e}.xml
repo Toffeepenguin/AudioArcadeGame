@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{a49704ad-012c-4e74-99b6-c997260e6c75}">
+	<object class="AudioFile" id="{b056db39-c484-40ff-8aeb-d4a123d3997e}">
 		<property name="assetPath">
-			<value>ChainPickup.wav</value>
+			<value>ChainMovement2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.61671201814058962</value>
+			<value>1.47</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{4f87b3f9-fa38-4e0c-b684-86ffa04c9e50}</destination>

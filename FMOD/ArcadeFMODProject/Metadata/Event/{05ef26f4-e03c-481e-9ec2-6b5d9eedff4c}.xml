@@ -100,6 +100,9 @@
 		<property name="length">
 			<value>9.4999999999999893</value>
 		</property>
+		<property name="startOffset">
+			<value>10.5</value>
+		</property>
 		<relationship name="fadeInCurve">
 			<destination>{4f3ae1ec-a174-480d-a831-6dbe62b74bbb}</destination>
 		</relationship>
