@@ -9,6 +9,7 @@ public class WHA_SnowboyObstacle : MonoBehaviour
     public MeshRenderer meshRender;
     public BoxCollider boxCol;
     private ParticleSystem snowParticle;
+    public GameObject SoundEmitter;
 
     [Header("Waypoint Settings")]
     public WHA_CarAIPath path; // Reference to the path
@@ -79,6 +80,8 @@ public class WHA_SnowboyObstacle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Instantiate(SoundEmitter, transform.position, Quaternion.identity);
+            
             StartCoroutine(RespawnAtRandomWaypoint());
         }
     }
