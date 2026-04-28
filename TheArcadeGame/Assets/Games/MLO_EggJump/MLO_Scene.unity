@@ -205,10 +205,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1798299516
-      Data2: 1302053159
-      Data3: -1845786180
-      Data4: -34483190
+      Data1: 830913152
+      Data2: 1289230785
+      Data3: 2074387856
+      Data4: 628120914
     Path: event:/EggJumpSounds/PlayMusic
   Event: 
   EventPlayTrigger: 1
@@ -303,10 +303,10 @@ MonoBehaviour:
   trophy: {fileID: 1640506084}
   FMOD_platform_rise_sound:
     Guid:
-      Data1: 1620925130
-      Data2: 1177681670
-      Data3: -1817679949
-      Data4: 1229160181
+      Data1: 547711998
+      Data2: 1204372027
+      Data3: -314243955
+      Data4: -1027115127
     Path: event:/EggJumpSounds/PlatformRise
 --- !u!4 &262357024
 Transform:

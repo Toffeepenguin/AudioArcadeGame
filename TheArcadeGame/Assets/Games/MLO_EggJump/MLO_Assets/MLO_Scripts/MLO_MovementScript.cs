@@ -64,7 +64,6 @@ public class MLO_MovementScript : MonoBehaviour
                     end_position = new Vector3(start_position.x + 4, start_position.y, start_position.z);
                     move = true;
                     FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
-
                 }
                 else if (_input.AnalogMovementInput.y < -.9)
                 {

@@ -108,7 +108,7 @@
             <parameter index="0" name="volume" parameterValue="5.62341403961181640625"/>
             <parameter index="1" name="static gain" parameterValue="1"/>
           </component>
-          <component componentGuid="13ad9f3a-c026-4066-ba31-2c28c27f41de" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
+          <component componentGuid="934f673e-48f8-4269-b0b2-bfbe3e2c5d58" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
             <parameter index="0" parameterValue="0"/>
             <parameter index="1" name="mute" parameterValue="0"/>
           </component>
@@ -222,7 +222,7 @@
             <parameter index="0" name="volume" parameterValue="5.62341403961181640625"/>
             <parameter index="1" name="static gain" parameterValue="1"/>
           </component>
-          <component componentGuid="3f334417-930b-4b20-8acf-29e4bdf4d898" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
+          <component componentGuid="a793b924-eadc-4af2-84ee-0b4ae7b1f95d" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
             <parameter index="0" parameterValue="0"/>
             <parameter index="1" name="mute" parameterValue="0"/>
           </component>
@@ -336,7 +336,7 @@
             <parameter index="0" name="volume" parameterValue="5.62341403961181640625"/>
             <parameter index="1" name="static gain" parameterValue="1"/>
           </component>
-          <component componentGuid="6ab43bd8-e235-49f0-b92a-ce744437699c" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
+          <component componentGuid="69711182-8948-48ee-80ea-b210c1e11d06" componentID="Audition.Mute" id="clipMute" name="Mute" powered="true">
             <parameter index="0" parameterValue="0"/>
             <parameter index="1" name="mute" parameterValue="0"/>
           </component>
@@ -632,7 +632,7 @@
     </tracks>
     <sessionState ctiPosition="207219" smpteStart="0">
       <selectionState selectionDuration="0" selectionStart="207219"/>
-      <viewState horizontalViewDuration="56780" horizontalViewStart="0" trackControlsWidth="224" verticalScrollOffset="0"/>
+      <viewState horizontalViewDuration="46316" horizontalViewStart="0" trackControlsWidth="224" verticalScrollOffset="0"/>
       <timeFormatState beatsPerBar="4" beatsPerMinute="120" customFrameRate="12" linkToDefaultTimeSettings="true" noteLength="4" subdivisions="16" timeCodeDropFrame="false" timeCodeFrameRate="30" timeCodeNTSC="false" timeFormat="timeFormatDecimal"/>
       <mixingOptionState defaultPanModeLogarithmic="false" panPower="-3" playOverlappingClips="false"/>
     </sessionState>
@@ -643,15 +643,16 @@
             xmlns:xmp="http://ns.adobe.com/xap/1.0/"
             xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
             xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+            xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
             xmlns:dc="http://purl.org/dc/elements/1.1/"
             xmlns:AEScart="http://ns.adobe.com/aes/cart/"
             xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/">
          <xmp:CreatorTool>Adobe Audition 25.6 (Macintosh)</xmp:CreatorTool>
          <xmp:CreateDate>2026-04-28T12:01:36+01:00</xmp:CreateDate>
-         <xmp:MetadataDate>2026-04-28T14:12:51+01:00</xmp:MetadataDate>
-         <xmp:ModifyDate>2026-04-28T14:12:51+01:00</xmp:ModifyDate>
-         <xmpMM:InstanceID>xmp.iid:36726f22-a3b9-464b-a2ad-1132c782ed4e</xmpMM:InstanceID>
-         <xmpMM:DocumentID>xmp.did:d81acfab-f587-40bf-8d6c-cadbb456cfda</xmpMM:DocumentID>
+         <xmp:MetadataDate>2026-04-28T15:07:28+01:00</xmp:MetadataDate>
+         <xmp:ModifyDate>2026-04-28T15:07:28+01:00</xmp:ModifyDate>
+         <xmpMM:InstanceID>xmp.iid:39153550-a11e-4ed0-a909-b05a51affa86</xmpMM:InstanceID>
+         <xmpMM:DocumentID>xmp.did:39153550-a11e-4ed0-a909-b05a51affa86</xmpMM:DocumentID>
          <xmpMM:OriginalDocumentID>xmp.did:d81acfab-f587-40bf-8d6c-cadbb456cfda</xmpMM:OriginalDocumentID>
          <xmpMM:History>
             <rdf:Seq>
@@ -718,8 +719,55 @@
                   <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
                   <stEvt:changed>/</stEvt:changed>
                </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:fae95650-d40f-4a26-9fc4-8612c729fe15</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T14:28:32+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/metadata</stEvt:changed>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:815e7532-8e34-487d-a98f-df8c21aa0f09</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T14:28:32+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/</stEvt:changed>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:b247d1ca-0356-4629-b33b-b3f1b8ae37c0</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T15:06:53+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/metadata</stEvt:changed>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:7f2095fe-8ce9-496f-81bd-c6c158fa63cf</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T15:06:53+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/</stEvt:changed>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:4bdce105-b9b8-4281-9190-48d239fc32c4</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T15:07:28+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/metadata</stEvt:changed>
+               </rdf:li>
+               <rdf:li rdf:parseType="Resource">
+                  <stEvt:action>saved</stEvt:action>
+                  <stEvt:instanceID>xmp.iid:39153550-a11e-4ed0-a909-b05a51affa86</stEvt:instanceID>
+                  <stEvt:when>2026-04-28T15:07:28+01:00</stEvt:when>
+                  <stEvt:softwareAgent>Adobe Audition 25.6 (Macintosh)</stEvt:softwareAgent>
+                  <stEvt:changed>/</stEvt:changed>
+               </rdf:li>
             </rdf:Seq>
          </xmpMM:History>
+         <xmpMM:DerivedFrom rdf:parseType="Resource">
+            <stRef:instanceID>xmp.iid:4bdce105-b9b8-4281-9190-48d239fc32c4</stRef:instanceID>
+            <stRef:documentID>xmp.did:d81acfab-f587-40bf-8d6c-cadbb456cfda</stRef:documentID>
+            <stRef:originalDocumentID>xmp.did:d81acfab-f587-40bf-8d6c-cadbb456cfda</stRef:originalDocumentID>
+         </xmpMM:DerivedFrom>
          <dc:format>application/xml</dc:format>
          <AEScart:Version>0101</AEScart:Version>
          <AEScart:PostTimer>
@@ -879,7 +927,7 @@
   </session>
 
   <files>
-    <file absolutePath="/Users/s23134521/Documents/GitHub/AudioArcadeGame/FallSound/Imported Files/fall_sound.wav" id="0" importerPrivateSettings="Compression:0:0;LargeFileSupport:0:0;SampleType:0:1;" mediaHandler="AmioWav" relativePath="Imported Files/fall_sound.wav"/>
+    <file absolutePath="/Users/s23134521/Documents/GitHub/AudioArcadeGame/MorganAudioProjects/Imported Files/fall_sound.wav" id="0" importerPrivateSettings="Compression:0:0;LargeFileSupport:0:0;SampleType:0:1;" mediaHandler="AmioWav" relativePath="Imported Files/fall_sound.wav"/>
   </files>
 
   <audioDevice inputID="22222222-2222-2222-2222-22222222" outputID="11111111-1111-1111-1111-11111111">
