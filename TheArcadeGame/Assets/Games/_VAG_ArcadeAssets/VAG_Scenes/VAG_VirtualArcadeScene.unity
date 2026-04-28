@@ -125491,7 +125491,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 3
+  OverrideMaxDistance: 10.02
 --- !u!65 &506254287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125511,7 +125511,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.41, y: 2.16, z: 2.98}
+  m_Size: {x: 4.51, y: 2.16, z: 3.64}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &506643794
 GameObject:
@@ -168821,13 +168821,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835099009}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.89255106, z: -0, w: -0.45094633}
-  m_LocalPosition: {x: 0.04, y: 1.49, z: -0.1}
+  m_LocalRotation: {x: -0, y: -0.85705864, z: -0, w: -0.51521885}
+  m_LocalPosition: {x: 0.039999954, y: 1.49, z: -0.10000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366098452}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 117.976, z: 0}
 --- !u!114 &835099011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168843,11 +168843,11 @@ MonoBehaviour:
   CollisionTag: Player
   EventReference:
     Guid:
-      Data1: -1497583670
-      Data2: 1144886161
-      Data3: -1373159026
-      Data4: -956407848
-    Path: event:/NPCs/Bald
+      Data1: -886827076
+      Data2: 1233411487
+      Data3: -1361538626
+      Data4: -771747674
+    Path: event:/NPCs/Morgan Freeman
   Event: 
   EventPlayTrigger: 3
   EventStopTrigger: 0
@@ -168858,7 +168858,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 3
+  OverrideMaxDistance: 10.01
 --- !u!65 &835099012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168878,7 +168878,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.41, y: 2.16, z: 2.98}
+  m_Size: {x: 4.36, y: 2.16, z: 2.84}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &836196137
 Mesh:
@@ -232822,6 +232822,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!4 &1111867001 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2792499861452184002, guid: 2a706093cdcc8d24f8b31d830f678399, type: 3}
+  m_PrefabInstance: {fileID: 1283929389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1115519525
 GameObject:
   m_ObjectHideFlags: 0
@@ -276317,7 +276322,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2792499861452184002, guid: 2a706093cdcc8d24f8b31d830f678399, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1564911359}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a706093cdcc8d24f8b31d830f678399, type: 3}
 --- !u!1 &1284929240
@@ -300949,7 +300957,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 3.4
+  OverrideMaxDistance: 10
 --- !u!65 &1403275138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -300969,7 +300977,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.76, y: 2.16, z: 4.23}
+  m_Size: {x: 3.76, y: 2.16, z: 6.55}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1405639334
 GameObject:
@@ -330276,12 +330284,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564911358}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9558675, z: -0, w: -0.2937979}
-  m_LocalPosition: {x: 11.85, y: 1.23, z: -18.49}
+  m_LocalRotation: {x: 0, y: -0.92020065, z: -0, w: 0.391447}
+  m_LocalPosition: {x: -0.98, y: 1.2699995, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1926152520}
+  m_Father: {fileID: 1111867001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1564911361
 BoxCollider:
@@ -330302,7 +330310,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.41, y: 2.16, z: 2.98}
+  m_Size: {x: 6, y: 2.16, z: 2.58}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1564911362
 MonoBehaviour:
@@ -330332,9 +330340,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10.02
 --- !u!43 &1568859942
 Mesh:
   m_ObjectHideFlags: 0
@@ -333656,7 +333664,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 3.05
+  OverrideMaxDistance: 10.03
 --- !u!65 &1573624241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333676,7 +333684,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.05, y: 2.16, z: 3.4}
+  m_Size: {x: 3.05, y: 2.16, z: 7.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &1574587115
 Mesh:
@@ -355546,7 +355554,7 @@ GameObject:
   - component: {fileID: 1660611169}
   m_Layer: 0
   m_Name: VAG_ThePlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355783,7 +355791,7 @@ MonoBehaviour:
       Data4: 2028824256
     Path: event:/CraneGameSounds/BoxHit
   Event: 
-  EventPlayTrigger: 0
+  EventPlayTrigger: 1
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -364238,9 +364246,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1248066069131407785, guid: b97a930929a95154b85d0742ab015eb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 506254285}
-    - targetCorrespondingSourceObject: {fileID: 1248066069131407785, guid: b97a930929a95154b85d0742ab015eb9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1564911359}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97a930929a95154b85d0742ab015eb9, type: 3}
 --- !u!1 &1716979996
@@ -384562,6 +384567,10 @@ PrefabInstance:
     - target: {fileID: 8027057966121039039, guid: d34700a5f6d359546bc65c95236d3535, type: 3}
       propertyPath: m_Name
       value: npc_csl_00_character_01f_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8027057966121039039, guid: d34700a5f6d359546bc65c95236d3535, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
