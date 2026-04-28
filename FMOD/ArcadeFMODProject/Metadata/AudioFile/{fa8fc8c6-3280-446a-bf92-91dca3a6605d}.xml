@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{fa8fc8c6-3280-446a-bf92-91dca3a6605d}">
+		<property name="assetPath">
+			<value>Retro game music.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>119.96429166666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4f87b3f9-fa38-4e0c-b684-86ffa04c9e50}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{81a6f8d8-500e-463d-8740-0f51dbca3bb7}">
+		<property name="assetPath">
+			<value>Car Ice skid.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.5714375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4f87b3f9-fa38-4e0c-b684-86ffa04c9e50}</destination>
+		</relationship>
+	</object>
+</objects>
