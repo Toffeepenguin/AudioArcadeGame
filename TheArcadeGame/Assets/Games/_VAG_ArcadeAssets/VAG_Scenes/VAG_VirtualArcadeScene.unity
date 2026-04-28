@@ -355380,11 +355380,11 @@ MonoBehaviour:
   minimum_stride_distance: 1
   footstep_sound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 830913152
+      Data2: 1289230785
+      Data3: 2074387856
+      Data4: 628120914
+    Path: event:/Footsteps/CharacterFootsteps
 --- !u!43 &1662167424
 Mesh:
   m_ObjectHideFlags: 0
@@ -447850,3 +447850,4 @@ SceneRoots:
   - {fileID: 1283929389}
   - {fileID: 1716473297}
   - {fileID: 647019667}
+  - {fileID: 543690388}

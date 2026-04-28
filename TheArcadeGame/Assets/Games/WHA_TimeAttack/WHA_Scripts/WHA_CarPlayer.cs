@@ -168,12 +168,8 @@ public class WHA_CarPlayer : MonoBehaviour
             // Check if the car is moving forward
             if (_input.NormalizedMovementInput.y > 0)
             {
-<<<<<<< Updated upstream
-                FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once
-=======
                 
                 
->>>>>>> Stashed changes
                 // Play engine sound immediately if not already playing
                 //if (!soundMaker.isPlaying)
                 //{
@@ -209,7 +205,7 @@ public class WHA_CarPlayer : MonoBehaviour
             {
                 carRB.linearVelocity = velocity.normalized * maxSpeed;
             } 
-            CarEngnie.setParameterByName("RPM", velocity / 50f);
+            CarEngnie.setParameterByName("RPM", carRB.linearVelocity.magnitude / 50f);
         }
 
         // Decrease cooldown timer each frame
