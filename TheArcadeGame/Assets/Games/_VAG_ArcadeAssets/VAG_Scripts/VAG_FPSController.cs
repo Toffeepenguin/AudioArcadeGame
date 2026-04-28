@@ -154,8 +154,6 @@ public class VAG_FPSController : MonoBehaviour
             HandleMouseLook();
 
             HandleHeadBob();
-          
-            HandleFootsteps();
 
             ApplyFinalMovements();
         }

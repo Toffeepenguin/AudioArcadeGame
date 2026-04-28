@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Footsteps : MonoBehaviour
@@ -12,6 +13,7 @@ public class Footsteps : MonoBehaviour
     public float maximum_rotation_amplitude;
     public float maximum_elevation;
     public float minimum_stride_distance;
+    [SerializeField] private EventReference footstep_sound;
 
     [Header("Outputs")]
     private int side;
@@ -69,6 +71,16 @@ public class Footsteps : MonoBehaviour
 
     private void PlayFootstep(float rotation_factor, float elevation_factor, float incline_factor, float speed_factor, int footstep_type)
     {
+        //dond need this anymore
+        //GetComponent<FMODUnity.StudioEventEmitter>().Play();
+        //Use this to play sound instead
+        var eventInstance = RuntimeManager.CreateInstance(footstep_sound);
+        //This is needed to select the audio from bank and then selecting the parameter
+        eventInstance.setParameterByNameWithLabel("CharacterFootsteps", "Value A");
+
+        //This part is used for doing one shot audio, important to release due to memory leaks
+        eventInstance.start();
+        eventInstance.release();
         return;
     }
 

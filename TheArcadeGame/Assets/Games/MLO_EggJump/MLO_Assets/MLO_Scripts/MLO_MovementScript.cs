@@ -1,10 +1,7 @@
 using System;
-using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class MLO_MovementScript : MonoBehaviour
 {
@@ -25,8 +22,11 @@ public class MLO_MovementScript : MonoBehaviour
     public GameObject input_manager;
     InputSubscription _input;
 
-    public AudioSource jump_sound;
-    public AudioSource fall_sound;
+    //public AudioSource jump_sound;
+    //public AudioSource fall_sound;
+    public EventReference FMOD_jump_sound;
+    public EventReference FMOD_fall_sound;
+    public EventReference FMOD_land_sound;
 
     // Start is called before the first frame update
     void Start()
@@ -44,41 +44,47 @@ public class MLO_MovementScript : MonoBehaviour
         {
             dead = true;
             time = 0;
-            fall_sound.Play();
+            //fall_sound.Play();
+            FMODAudioUtilsObject.Get3DAttRef(FMOD_fall_sound, gameObject);
         }
 
         if (!move && !dead) // stationary, ready for input
         {
-            if (_input.AnalogMovementInput.y > .9)
+            if (_input.AnalogMovementInput.magnitude > .9) 
             {
-                end_position = new Vector3(start_position.x, start_position.y, start_position.z + 4);
-                move = true;
-            }
-            else if (_input.AnalogMovementInput.x > .9)
-            {
-                end_position = new Vector3(start_position.x + 4, start_position.y, start_position.z);
-                move = true;
-            }
-            else if (_input.AnalogMovementInput.y < -.9)
-            {
-                end_position = new Vector3(start_position.x, start_position.y, start_position.z - 4);
-                move = true;
-            }
-            else if (_input.AnalogMovementInput.x < -.9)
-            {
-                end_position = new Vector3(start_position.x - 4, start_position.y, start_position.z);
-                move = true;
-            }
+                if (_input.AnalogMovementInput.y > .9)
+                {
+                    end_position = new Vector3(start_position.x, start_position.y, start_position.z + 4);
+                    move = true;
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
 
-            if (move)
-            {
-                jump_sound.Play();
-            }
-        }
+                }
+                else if (_input.AnalogMovementInput.x > .9)
+                {
+                    end_position = new Vector3(start_position.x + 4, start_position.y, start_position.z);
+                    move = true;
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
 
-        if (move && game_handler_script.GetScore() == 0) // if this is the first jump, which starts the game
-        {
-            game_handler_script.StartGame();
+                }
+                else if (_input.AnalogMovementInput.y < -.9)
+                {
+                    end_position = new Vector3(start_position.x, start_position.y, start_position.z - 4);
+                    move = true;
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+
+                }
+                else if (_input.AnalogMovementInput.x < -.9)
+                {
+                    end_position = new Vector3(start_position.x - 4, start_position.y, start_position.z);
+                    move = true;
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
+                }
+
+                if (move && game_handler_script.GetScore() == 0)
+                {
+                    game_handler_script.StartGame();
+                }
+            }
         }
 
         if (move && !dead) // jump state
@@ -107,6 +113,7 @@ public class MLO_MovementScript : MonoBehaviour
                 if (colliding) // final precaution to make sure the player succeeded
                 {
                     game_handler_script.IncreaseScoreLevel(new Vector3(end_position.x, end_position.y - .85f, end_position.z));
+                    FMODAudioUtilsObject.Get3DAttRef(FMOD_land_sound, gameObject);
                 }
             }
         }
