@@ -157,9 +157,6 @@
 	<object class="MixerBusPanner" id="{1526e648-7632-4e2e-8af9-be1ebe822b1f}" />
 	<object class="MixerBusFader" id="{eed7dfc7-2f06-4447-9bba-a2854564c145}" />
 	<object class="SpatialiserEffect" id="{b313971c-597d-4636-a35d-f3e407c7fdc5}">
-		<property name="distanceRolloffType">
-			<value>4</value>
-		</property>
 		<property name="minimumDistance">
 			<value>13.5</value>
 		</property>
