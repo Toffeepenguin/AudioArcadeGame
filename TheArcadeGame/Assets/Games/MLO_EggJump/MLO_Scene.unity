@@ -430,19 +430,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-<<<<<<< HEAD
       Data1: -268274285
       Data2: 1185850753
       Data3: -280454473
       Data4: -31347449
     Path: event:/Jumping Game/Jumping_Game_Music
-=======
-      Data1: 830913152
-      Data2: 1289230785
-      Data3: 2074387856
-      Data4: 628120914
-    Path: event:/EggJumpSounds/PlayMusic
->>>>>>> Eggjump
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 0
