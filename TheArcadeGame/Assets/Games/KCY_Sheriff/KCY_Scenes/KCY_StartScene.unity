@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: bca9043b87a364a199d71431a83b2e26, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8175b0fad4a1b45c58fb0598e97969a8, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: a29a8cd3cb1453a4fb49b487e9bdd1b5, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 1178005979}
   - component: {fileID: 1178005978}
   - component: {fileID: 1178005977}
+  - component: {fileID: 1178005980}
   m_Layer: 5
   m_Name: PlayText
   m_TagString: Untagged
@@ -836,6 +837,37 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: -76}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1178005980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178005976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1212931054
+      Data2: 1172074469
+      Data3: 1567174803
+      Data4: 1370059779
+    Path: event:/Sheriff game/Sheriff start
+  Event: 
+  EventPlayTrigger: 2
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1585083623
 GameObject:
   m_ObjectHideFlags: 0
