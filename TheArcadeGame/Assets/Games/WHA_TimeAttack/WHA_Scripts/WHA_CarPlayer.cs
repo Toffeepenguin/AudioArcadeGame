@@ -166,20 +166,10 @@ public class WHA_CarPlayer : MonoBehaviour
             carRB.AddForce(moveDirection, ForceMode.Acceleration);
 
             // Check if the car is moving forward
-            if (_input.NormalizedMovementInput.y > 0)
-            {
-<<<<<<< Updated upstream
-                FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once
-=======
-                
-                
->>>>>>> Stashed changes
-                // Play engine sound immediately if not already playing
-                //if (!soundMaker.isPlaying)
-                //{
-                //    soundMaker.PlayOneShot(carRunningSound);
-                //}
-            }
+            //if (_input.NormalizedMovementInput.y > 0)
+            //{
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once//
+            //}
 
             // Steering
             float steerInput = _input.NormalizedMovementInput.x;
@@ -192,11 +182,11 @@ public class WHA_CarPlayer : MonoBehaviour
                 // Play tire screech sound when turning sharply
                 if (Mathf.Abs(steerInput) > 0.5f) // Only trigger if the turn is significant
                 {
-                    if (soundCooldownTimer <= 0f) // Check if cooldown has expired
-                    {
-                        soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
-                        StartCoroutine(PlayTireScreechSoundOnce());
-                    }
+                    //if (soundCooldownTimer <= 0f) // Check if cooldown has expired
+                    //{
+                    //    soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
+                    //    StartCoroutine(PlayTireScreechSoundOnce());
+                    //}
                 }
             }
 
@@ -209,7 +199,7 @@ public class WHA_CarPlayer : MonoBehaviour
             {
                 carRB.linearVelocity = velocity.normalized * maxSpeed;
             } 
-            CarEngnie.setParameterByName("RPM", velocity / 50f);
+            CarEngnie.setParameterByName("RPM",  carRB.linearVelocity.magnitude / 50f);
         }
 
         // Decrease cooldown timer each frame
@@ -220,20 +210,20 @@ public class WHA_CarPlayer : MonoBehaviour
     }
 
 
-    #region CarSounds
+   // #region CarSounds
 
     // Improved Tire screech sound with cooldown
-    IEnumerator PlayTireScreechSoundOnce()
-    {
+    //IEnumerator PlayTireScreechSoundOnce()
+    //{
         // Play tire screech sound
-        soundMakerTwo.PlayOneShot(tireScreechSound);
+    //    soundMakerTwo.PlayOneShot(tireScreechSound);
 
         // Wait for the cooldown duration
-        yield return new WaitForSeconds(soundCooldownDuration);
-    }
+    //    yield return new WaitForSeconds(soundCooldownDuration);
+    //}
 
 
-    #endregion
+    //#endregion
 
     #region TurnIntoAIWhenRaceOver
 
@@ -328,10 +318,13 @@ public class WHA_CarPlayer : MonoBehaviour
         }
 
         // This triggers the car collision sound effect
-        if (other.gameObject.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Ground"))
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Collision");
+            Debug.Log(other.gameObject.name);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/RacingGame/Collisions");
         }
+        
+        
     }
 
     IEnumerator SlowCarDown()

@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FMOD;
+using FMOD.Studio;
+using System.Collections;
 
 public class VAG_FPSController : MonoBehaviour
 {
@@ -55,10 +58,17 @@ public class VAG_FPSController : MonoBehaviour
     float InteractionRange = 2f;
     [SerializeField] LayerMask InteractablesLayer;
     [SerializeField] GameObject CrossHair;
+    
     Transform CurrentArcade;
    
     Vector2 CurrentInput;
     bool ArcadeIsDetected;
+    VCA vca;
+
+      //[SerializeField][Range(-100f, 10f)] 
+        private float vcaVolume = -80f;
+        
+        private float volume;
 
 
 
@@ -81,6 +91,7 @@ public class VAG_FPSController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         
+        
 
       
 
@@ -91,10 +102,13 @@ public class VAG_FPSController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        
-
+       
         if (PlayerPrefs.GetInt("GAMEWASLAUNCHED") == 0)
         {
+            
+            vca = FMODUnity.RuntimeManager.GetVCA("vca:/Arcade");
+            //vca.setVolume(0f);
+           
             MainMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -138,13 +152,22 @@ public class VAG_FPSController : MonoBehaviour
 
 
 
+        StartCoroutine(setVCA());
+    }
 
+    IEnumerator setVCA()
+    {
+        volume = Mathf.Pow(10.0f, vcaVolume / 20f);
+        vca.setVolume(volume);
+        yield return new WaitForSeconds(0.0f);
     }
 
 
     void Update()
     {
-        
+    //volume = Mathf.Pow(10.0f, vcaVolume / 20f);
+   //vca.setVolume(volume);
+    
 
         if (CanMove)
         {
@@ -201,7 +224,7 @@ public class VAG_FPSController : MonoBehaviour
     {
         if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, InteractionRange, InteractablesLayer))
         {
-            Debug.DrawRay(PlayerCamera.transform.position, PlayerCamera.transform.forward * InteractionRange, Color.yellow);
+            UnityEngine.Debug.DrawRay(PlayerCamera.transform.position, PlayerCamera.transform.forward * InteractionRange, Color.yellow);
 
             if(!CurrentArcade && !IsInteracting)
             CrossHair.SetActive(true);
@@ -358,6 +381,15 @@ public class VAG_FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //MenuMusicSFX.Pause();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Select");
+        //FMODUnity.RuntimeManager.GetVCA("Arcade");
+        //VCA = FMODUnity.RuntimeManager.GetVCA("Arcade");
+        
+        vcaVolume = 10f;
+        volume = Mathf.Pow(10.0f, vcaVolume / 20f);
+        vca.setVolume(volume);
+        
+
 
     }
 
@@ -372,6 +404,8 @@ public class VAG_FPSController : MonoBehaviour
         GameIsPause = false;
 
         CanMove = true ;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Resume");
+
     }
 
     public void PAUSEGame()
@@ -385,17 +419,21 @@ public class VAG_FPSController : MonoBehaviour
         GameIsPause = true;
 
         CanMove = false;
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Pause");
     }
 
     public void QUITBUTTON()
     {
         Time.timeScale = 1f;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Select");
+
         Application.Quit();
     }
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Quit function Test");
+        UnityEngine.Debug.Log("Quit function Test");
 
         PlayerPrefs.SetInt("GAMEWASLAUNCHED", 0);
         PlayerPrefs.SetInt("GameMachineID", 0);
