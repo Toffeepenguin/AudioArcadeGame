@@ -164,6 +164,7 @@ public class WHA_CarPlayer : MonoBehaviour
             // Check if the car is moving forward
             if (_input.NormalizedMovementInput.y > 0)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once
                 // Play engine sound immediately if not already playing
                 if (!soundMaker.isPlaying)
                 {
@@ -314,6 +315,12 @@ public class WHA_CarPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             StartCoroutine(SlowCarDown());
+        }
+
+        // This triggers the car collision sound effect
+        if (other.gameObject.CompareTag("Player"))
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Collision");
         }
     }
 

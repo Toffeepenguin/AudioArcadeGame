@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{2e69c03c-2529-433a-80eb-b15671a6ab10}">
+		<property name="assetPath">
+			<value>Countdown.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4f87b3f9-fa38-4e0c-b684-86ffa04c9e50}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -81,6 +81,7 @@ public class KCY_Player : MonoBehaviour
             {
                 jumped = true;
                 jumpSource.Play();
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/JumpSFX"); // Play SFX through FMOD once
                 animator.SetBool("DoJump", true);
                 grounded = false;
                 rb.AddForce(transform.up * 300);
@@ -95,6 +96,7 @@ public class KCY_Player : MonoBehaviour
             {
                 thrown = true;
                 lassoSource.Play();
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/LassoSFX"); // Play SFX through FMOD once
                 timeStart = true;
                 lassoInstAnim = Instantiate(lassoAnim, new Vector3(transform.position.x + 2, transform.position.y), Quaternion.identity);
                 canJump = false;
@@ -178,7 +180,9 @@ public class KCY_Player : MonoBehaviour
         {
             gameOver = true;
             gameManager.GetComponent<KCY_GameOver>().EndGame();
-            
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SheriffGame/Death SFX"); // Play SFX through FMOD once
+
+
             //SceneManager.LoadScene("GameOver");
         }
 
