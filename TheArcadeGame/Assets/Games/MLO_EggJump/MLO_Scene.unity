@@ -199,7 +199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20117543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 
@@ -430,11 +430,19 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
+<<<<<<< HEAD
       Data1: -268274285
       Data2: 1185850753
       Data3: -280454473
       Data4: -31347449
     Path: event:/Jumping Game/Jumping_Game_Music
+=======
+      Data1: 830913152
+      Data2: 1289230785
+      Data3: 2074387856
+      Data4: 628120914
+    Path: event:/EggJumpSounds/PlayMusic
+>>>>>>> Eggjump
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 0
@@ -543,10 +551,10 @@ MonoBehaviour:
   trophy: {fileID: 1640506084}
   FMOD_platform_rise_sound:
     Guid:
-      Data1: 1620925130
-      Data2: 1177681670
-      Data3: -1817679949
-      Data4: 1229160181
+      Data1: 547711998
+      Data2: 1204372027
+      Data3: -314243955
+      Data4: -1027115127
     Path: event:/EggJumpSounds/PlatformRise
 --- !u!4 &262357024
 Transform:
