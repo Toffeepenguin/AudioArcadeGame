@@ -27890,6 +27890,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d662e1104bdb7242993e5de49848f1f, type: 3}
   m_PrefabInstance: {fileID: 143126171}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &143444346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143444347}
+  - component: {fileID: 143444349}
+  - component: {fileID: 143444348}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &143444347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143444346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.3, z: -30.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 314106896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &143444348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143444346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: 785697604
+      Data2: 1115673281
+      Data3: -2043584107
+      Data4: 1488837288
+    Path: snapshot:/Enter_Cave
+  Event: 
+  EventPlayTrigger: 3
+  EventStopTrigger: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!65 &143444349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143444346}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 140, y: 40, z: 74.19}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &143628894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70495,6 +70580,7 @@ Transform:
   - {fileID: 1763957665}
   - {fileID: 1832834304}
   - {fileID: 819782460}
+  - {fileID: 143444347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &314244305
@@ -172224,6 +172310,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5097555448841386027, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
   m_PrefabInstance: {fileID: 3238780945979405444}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &850192011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715172995}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1150228144
+      Data2: 1107667020
+      Data3: -1666122601
+      Data4: 1960852120
+    Path: event:/RacingGame/Player Car
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: RPM
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &850614675
 Mesh:
   m_ObjectHideFlags: 0
@@ -451567,14 +451686,27 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 530030311}
+    - target: {fileID: 8055099765233079524, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
+      propertyPath: soundMaker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8055099765233079524, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
+      propertyPath: soundMakerTwo
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8553977336138296334, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
       propertyPath: m_Name
       value: Car Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8335422293294222892, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
+    - {fileID: 5875833286430292497, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8553977336138296334, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 850192011}
   m_SourcePrefab: {fileID: 100100000, guid: 40b6792e3b92729409f374cdfa56a65c, type: 3}
 --- !u!1001 &4135384995244310422
 PrefabInstance:

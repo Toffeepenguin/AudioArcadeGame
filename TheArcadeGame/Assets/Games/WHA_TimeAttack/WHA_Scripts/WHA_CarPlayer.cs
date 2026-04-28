@@ -53,6 +53,7 @@ public class WHA_CarPlayer : MonoBehaviour
     private List<Transform> waypoints; // List of waypoints
     private int currentWaypointIndex = 0; // Index of the current target waypoint
 
+    FMOD.Studio.EventInstance CarEngnie;    
 
     private void Start()
     {
@@ -60,6 +61,9 @@ public class WHA_CarPlayer : MonoBehaviour
         _input = gameMan.GetComponent<InputSubscription>();
         _raceManager = gameMan.GetComponent<WHA_RaceManager>();
         carRB = GetComponent<Rigidbody>();
+
+        CarEngnie = FMODUnity.RuntimeManager.CreateInstance("event:/RacingGame/Player Car");
+        CarEngnie.start();
 
         // Adjust center of mass to avoid flipping
         carRB.centerOfMass = new Vector3(0, -0.5f, 0);
@@ -164,12 +168,17 @@ public class WHA_CarPlayer : MonoBehaviour
             // Check if the car is moving forward
             if (_input.NormalizedMovementInput.y > 0)
             {
+<<<<<<< Updated upstream
                 FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once
+=======
+                
+                
+>>>>>>> Stashed changes
                 // Play engine sound immediately if not already playing
-                if (!soundMaker.isPlaying)
-                {
-                    soundMaker.PlayOneShot(carRunningSound);
-                }
+                //if (!soundMaker.isPlaying)
+                //{
+                //    soundMaker.PlayOneShot(carRunningSound);
+                //}
             }
 
             // Steering
@@ -199,7 +208,8 @@ public class WHA_CarPlayer : MonoBehaviour
             if (velocity.magnitude > maxSpeed)
             {
                 carRB.linearVelocity = velocity.normalized * maxSpeed;
-            }
+            } 
+            CarEngnie.setParameterByName("RPM", velocity / 50f);
         }
 
         // Decrease cooldown timer each frame
