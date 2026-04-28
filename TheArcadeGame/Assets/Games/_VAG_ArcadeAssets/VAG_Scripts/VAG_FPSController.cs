@@ -385,7 +385,7 @@ public class VAG_FPSController : MonoBehaviour
         //FMODUnity.RuntimeManager.GetVCA("Arcade");
         //VCA = FMODUnity.RuntimeManager.GetVCA("Arcade");
         
-        vcaVolume = 10f;
+        vcaVolume = 0f;
         volume = Mathf.Pow(10.0f, vcaVolume / 20f);
         vca.setVolume(volume);
         
@@ -405,6 +405,9 @@ public class VAG_FPSController : MonoBehaviour
 
         CanMove = true ;
         FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Resume");
+        vcaVolume = 0f;
+        volume = Mathf.Pow(10.0f, vcaVolume / 20f);
+        vca.setVolume(volume);
 
     }
 
@@ -421,6 +424,9 @@ public class VAG_FPSController : MonoBehaviour
         CanMove = false;
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Arcade/UI/Menu Pause");
+        vcaVolume = -80f;
+        volume = Mathf.Pow(10.0f, vcaVolume / 20f);
+        vca.setVolume(volume);
     }
 
     public void QUITBUTTON()

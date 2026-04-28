@@ -53,7 +53,7 @@ public class WHA_CarPlayer : MonoBehaviour
     private List<Transform> waypoints; // List of waypoints
     private int currentWaypointIndex = 0; // Index of the current target waypoint
 
-    FMOD.Studio.EventInstance CarEngnie;    
+    FMOD.Studio.EventInstance CarEngine;    
 
     private void Start()
     {
@@ -62,8 +62,8 @@ public class WHA_CarPlayer : MonoBehaviour
         _raceManager = gameMan.GetComponent<WHA_RaceManager>();
         carRB = GetComponent<Rigidbody>();
 
-        CarEngnie = FMODUnity.RuntimeManager.CreateInstance("event:/RacingGame/Player Car");
-        CarEngnie.start();
+        CarEngine = FMODUnity.RuntimeManager.CreateInstance("event:/RacingGame/Player Car");
+        CarEngine.start();
 
         // Adjust center of mass to avoid flipping
         carRB.centerOfMass = new Vector3(0, -0.5f, 0);
@@ -199,7 +199,7 @@ public class WHA_CarPlayer : MonoBehaviour
             {
                 carRB.linearVelocity = velocity.normalized * maxSpeed;
             } 
-            CarEngnie.setParameterByName("RPM",  carRB.linearVelocity.magnitude / 50f);
+            CarEngine.setParameterByName("RPM",  carRB.linearVelocity.magnitude / 50f);
         }
 
         // Decrease cooldown timer each frame
