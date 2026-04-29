@@ -53,7 +53,7 @@ public class WHA_CarPlayer : MonoBehaviour
     private List<Transform> waypoints; // List of waypoints
     private int currentWaypointIndex = 0; // Index of the current target waypoint
 
-    FMOD.Studio.EventInstance CarEngnie;    
+    FMOD.Studio.EventInstance CarEngine;    
 
     private void Start()
     {
@@ -62,8 +62,8 @@ public class WHA_CarPlayer : MonoBehaviour
         _raceManager = gameMan.GetComponent<WHA_RaceManager>();
         carRB = GetComponent<Rigidbody>();
 
-        CarEngnie = FMODUnity.RuntimeManager.CreateInstance("event:/RacingGame/Player Car");
-        CarEngnie.start();
+        CarEngine = FMODUnity.RuntimeManager.CreateInstance("event:/RacingGame/Player Car");
+        CarEngine.start();
 
         // Adjust center of mass to avoid flipping
         carRB.centerOfMass = new Vector3(0, -0.5f, 0);
@@ -166,16 +166,10 @@ public class WHA_CarPlayer : MonoBehaviour
             carRB.AddForce(moveDirection, ForceMode.Acceleration);
 
             // Check if the car is moving forward
-            if (_input.NormalizedMovementInput.y > 0)
-            {
-                
-                
-                // Play engine sound immediately if not already playing
-                //if (!soundMaker.isPlaying)
-                //{
-                //    soundMaker.PlayOneShot(carRunningSound);
-                //}
-            }
+            //if (_input.NormalizedMovementInput.y > 0)
+            //{
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once//
+            //}
 
             // Steering
             float steerInput = _input.NormalizedMovementInput.x;
@@ -188,11 +182,11 @@ public class WHA_CarPlayer : MonoBehaviour
                 // Play tire screech sound when turning sharply
                 if (Mathf.Abs(steerInput) > 0.5f) // Only trigger if the turn is significant
                 {
-                    if (soundCooldownTimer <= 0f) // Check if cooldown has expired
-                    {
-                        soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
-                        StartCoroutine(PlayTireScreechSoundOnce());
-                    }
+                    //if (soundCooldownTimer <= 0f) // Check if cooldown has expired
+                    //{
+                    //    soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
+                    //    StartCoroutine(PlayTireScreechSoundOnce());
+                    //}
                 }
             }
 
@@ -205,7 +199,7 @@ public class WHA_CarPlayer : MonoBehaviour
             {
                 carRB.linearVelocity = velocity.normalized * maxSpeed;
             } 
-            CarEngnie.setParameterByName("RPM", carRB.linearVelocity.magnitude / 50f);
+            CarEngine.setParameterByName("RPM",  carRB.linearVelocity.magnitude / 50f);
         }
 
         // Decrease cooldown timer each frame
@@ -216,20 +210,20 @@ public class WHA_CarPlayer : MonoBehaviour
     }
 
 
-    #region CarSounds
+   // #region CarSounds
 
     // Improved Tire screech sound with cooldown
-    IEnumerator PlayTireScreechSoundOnce()
-    {
+    //IEnumerator PlayTireScreechSoundOnce()
+    //{
         // Play tire screech sound
-        soundMakerTwo.PlayOneShot(tireScreechSound);
+    //    soundMakerTwo.PlayOneShot(tireScreechSound);
 
         // Wait for the cooldown duration
-        yield return new WaitForSeconds(soundCooldownDuration);
-    }
+    //    yield return new WaitForSeconds(soundCooldownDuration);
+    //}
 
 
-    #endregion
+    //#endregion
 
     #region TurnIntoAIWhenRaceOver
 
@@ -324,10 +318,13 @@ public class WHA_CarPlayer : MonoBehaviour
         }
 
         // This triggers the car collision sound effect
-        if (other.gameObject.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Ground"))
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Collision");
+            Debug.Log(other.gameObject.name);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/RacingGame/Collisions");
         }
+        
+        
     }
 
     IEnumerator SlowCarDown()
