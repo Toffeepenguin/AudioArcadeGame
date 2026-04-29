@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Settings: {fileID: 7370423276357217231, guid: ddd43462bfd609346901456064fece25, type: 3}
   Exit: {fileID: 3535208246402148182, guid: 66066fd18f8718542a038c254a6a3b2b, type: 3}
+  Music: {fileID: 1290541478}
 --- !u!1 &74360273
 GameObject:
   m_ObjectHideFlags: 0

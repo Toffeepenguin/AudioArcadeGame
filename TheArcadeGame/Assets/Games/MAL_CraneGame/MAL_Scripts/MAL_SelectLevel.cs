@@ -9,6 +9,7 @@ public class MAL_SelectLevel : MonoBehaviour
 {
     [SerializeField] GameObject Settings;
     [SerializeField] GameObject Exit;
+    public FMODUnity.StudioEventEmitter Music;
     private InputSubscription _Input;
     private bool startCount = false;
     private int counter;
@@ -111,9 +112,18 @@ public class MAL_SelectLevel : MonoBehaviour
         if (_Input.ConfirmInput && GameObject.Find("MAL_Exit(Clone)") && counter >= 5)
         {
             MAL_MenuSoundEffects.instance.PlayCraneGameMenu_SFX();
-            SceneManager.LoadScene(0);
+            StartCoroutine("stupidwait");
             //Application.Quit();
         } //Another Menu like level complete (enter to esc) or (esc to quit) 
+    }
+
+    private IEnumerator stupidwait()
+    {
+        Music.EventStopTrigger = FMODUnity.EmitterGameEvent.ObjectDestroy;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(Music.gameObject);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(0);
     }
 
     private void FixedUpdate()
