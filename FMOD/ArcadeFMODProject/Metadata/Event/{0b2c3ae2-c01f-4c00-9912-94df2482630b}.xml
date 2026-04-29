@@ -71,10 +71,13 @@
 			<destination>{364359af-dd6d-4b34-8caf-a2436f5c42ac}</destination>
 		</relationship>
 		<relationship name="markers">
-			<destination>{3c49a65a-75e2-4267-a0ec-a88d7b12e1f5}</destination>
+			<destination>{553c2b98-a76a-4fbd-9f15-badb6988b2f2}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1911e52e-028a-4f42-9761-5302a21334ae}">
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{ea50c5c7-66cd-4618-beff-39aab0be5feb}</destination>
 		</relationship>
@@ -113,7 +116,7 @@
 			<destination>{1911e52e-028a-4f42-9761-5302a21334ae}</destination>
 		</relationship>
 	</object>
-	<object class="LoopRegion" id="{3c49a65a-75e2-4267-a0ec-a88d7b12e1f5}">
+	<object class="LoopRegion" id="{553c2b98-a76a-4fbd-9f15-badb6988b2f2}">
 		<property name="position">
 			<value>0</value>
 		</property>
