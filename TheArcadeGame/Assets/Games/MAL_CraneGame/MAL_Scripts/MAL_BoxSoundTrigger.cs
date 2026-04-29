@@ -32,7 +32,6 @@ public class MAL_BoxSoundTrigger : MonoBehaviour
         EventInstance instance = RuntimeManager.CreateInstance(SoundEffect);
         instance.setParameterByName("BoxHitSpeed", maxSpeedSinceLastHit);
         instance.setParameterByName("BoxPosition", (transform.position.x + 8.33f) / 16.66f);
-        Debug.Log((transform.position.x + 8.33f) / 16.66f);
         instance.start();
         instance.release();
 

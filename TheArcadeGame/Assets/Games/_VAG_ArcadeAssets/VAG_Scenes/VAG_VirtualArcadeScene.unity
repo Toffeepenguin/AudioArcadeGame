@@ -355707,7 +355707,7 @@ MonoBehaviour:
       Data4: 764948034
     Path: event:/Arcade/Coin Insert
   Event: 
-  EventPlayTrigger: 1
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0
