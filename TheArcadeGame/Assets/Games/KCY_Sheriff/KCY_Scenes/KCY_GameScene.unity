@@ -309,7 +309,7 @@ MonoBehaviour:
     Path: event:/SheriffGame/Horse Trotting
   Event: 
   EventPlayTrigger: 1
-  EventStopTrigger: 5
+  EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     Path: event:/SheriffGame/WindSFX
   Event: 
   EventPlayTrigger: 1
-  EventStopTrigger: 5
+  EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
