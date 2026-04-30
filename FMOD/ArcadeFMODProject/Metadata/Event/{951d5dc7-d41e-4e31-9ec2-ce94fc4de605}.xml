@@ -216,7 +216,11 @@
 			<destination>{569c27b7-ec1f-4b4c-bcf2-5b4a2aa72977}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{07d25a03-9b83-436c-b71b-4b0e4bbbc2b2}" />
+	<object class="MixerBusPanner" id="{07d25a03-9b83-436c-b71b-4b0e4bbbc2b2}">
+		<property name="stereoPan">
+			<value>-56</value>
+		</property>
+	</object>
 	<object class="SFXReverbEffect" id="{b4de0274-aa00-4e2d-9956-eeb5ae7abc25}">
 		<property name="decayTime">
 			<value>1900</value>

@@ -187,15 +187,24 @@ public class WHA_RaceManager : MonoBehaviour
             {
                 racer.currentCheckpoint = 0;
                 racer.currentLap++;
+            if (racer.name == "The Player")
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Racing_Game/Lap complete");
+            }
 
                 if (racer.name == "The Player")
                 {
                     UpdateLapCounter(); // Update lap counter UI for the player
                 }
 
-                if (racer.currentLap >= totalLaps) // When the racer’s lap is the total laps, they win
+                if (racer.currentLap >= totalLaps) // When the racerï¿½s lap is the total laps, they win
                 {
                     Debug.Log($"{racer.name} has finished the race!");
+
+                    if (racer.name == "The Player")
+                    {
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/Racing_Game/Level finish");
+                    }
 
                     racer.finalPlacement = racers.IndexOf(racer) + 1;
 
