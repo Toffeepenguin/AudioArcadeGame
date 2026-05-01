@@ -5,6 +5,9 @@ using System.Media;
 using System.Security.Policy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
+using FMOD.Studio;
+
 
 public class WHA_CarPlayer : MonoBehaviour
 {
@@ -77,6 +80,15 @@ public class WHA_CarPlayer : MonoBehaviour
         else
         {
             Debug.LogError("No path assigned to AI!");
+        }
+    }
+
+    private void Update()
+    {
+        // Check if the car is moving forward
+        if (_input.NormalizedMovementInput.y > 0 && isOnIce)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Racing_Game/Driving over ice"); // Play SFX through FMOD once
         }
     }
 
@@ -164,13 +176,6 @@ public class WHA_CarPlayer : MonoBehaviour
         {
             Vector3 moveDirection = transform.forward * moveSpeed * _input.NormalizedMovementInput.y;
             carRB.AddForce(moveDirection, ForceMode.Acceleration);
-
-            // Check if the car is moving forward
-            //if (_input.NormalizedMovementInput.y > 0)
-            //{
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/RacersRidgeGame/Car Engine"); // Play SFX through FMOD once//
-            //}
-
             // Steering
             float steerInput = _input.NormalizedMovementInput.x;
             if (_input.NormalizedMovementInput.y != 0)
@@ -216,7 +221,9 @@ public class WHA_CarPlayer : MonoBehaviour
     //IEnumerator PlayTireScreechSoundOnce()
     //{
         // Play tire screech sound
-    //    soundMakerTwo.PlayOneShot(tireScreechSound);
+       // soundMakerTwo.PlayOneShot(tireScreechSound);
+
+        //RuntimeManager.PlayOneShot("event:/Racing_Game/Tire screech", transform.position);
 
         // Wait for the cooldown duration
     //    yield return new WaitForSeconds(soundCooldownDuration);

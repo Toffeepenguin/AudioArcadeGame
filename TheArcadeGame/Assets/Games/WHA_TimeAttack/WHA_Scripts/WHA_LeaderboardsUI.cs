@@ -7,7 +7,7 @@ public class WHA_LeaderboardsUI : MonoBehaviour
 {
     public void OnRestartClick()
     {
-        SceneManager.LoadScene("WHA_ChristmasTrack");
+        SceneManager.LoadScene("WHA_ChristmasTrackArthur");
     }
 
     public void OnQuitClick()

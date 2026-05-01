@@ -28,6 +28,9 @@
 		<relationship name="timeline">
 			<destination>{75f4d3af-ced6-4097-b988-2e216bf90db2}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{ede31904-7f18-4bee-97aa-7dcbcaa81a1d}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{fa95d7e3-1b5d-48d0-bb23-e1644be60fb8}">
 		<relationship name="masterBus">
@@ -64,6 +67,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{bc24b16a-0e80-46d7-900b-9e1275733e14}">
+		<property name="volume">
+			<value>4</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{921ce5af-2155-40ed-9209-aa6b101c95c7}</destination>
 		</relationship>
@@ -76,7 +82,7 @@
 	</object>
 	<object class="SingleSound" id="{33b74e06-767b-43a1-9259-1a13f423cba7}">
 		<property name="length">
-			<value>25.654285714285713</value>
+			<value>14</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{4b64cd2b-225a-4b23-b900-deb79fe92eb0}</destination>
@@ -93,7 +99,7 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>25.654285714285713</value>
+			<value>14</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{75f4d3af-ced6-4097-b988-2e216bf90db2}</destination>
