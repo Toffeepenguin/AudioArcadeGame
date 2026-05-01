@@ -187,11 +187,11 @@ public class WHA_CarPlayer : MonoBehaviour
                 // Play tire screech sound when turning sharply
                 if (Mathf.Abs(steerInput) > 0.5f) // Only trigger if the turn is significant
                 {
-                    //if (soundCooldownTimer <= 0f) // Check if cooldown has expired
-                    //{
-                    //    soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
-                    //    StartCoroutine(PlayTireScreechSoundOnce());
-                    //}
+                    if (soundCooldownTimer <= 0f) // Check if cooldown has expired
+                    {
+                        soundCooldownTimer = soundCooldownDuration; // Reset cooldown timer
+                        StartCoroutine(PlayTireScreechSoundOnce());
+                    }
                 }
             }
 
@@ -218,16 +218,16 @@ public class WHA_CarPlayer : MonoBehaviour
    // #region CarSounds
 
     // Improved Tire screech sound with cooldown
-    //IEnumerator PlayTireScreechSoundOnce()
-    //{
+    IEnumerator PlayTireScreechSoundOnce()
+    {
         // Play tire screech sound
        // soundMakerTwo.PlayOneShot(tireScreechSound);
 
-        //RuntimeManager.PlayOneShot("event:/Racing_Game/Tire screech", transform.position);
+        RuntimeManager.PlayOneShot("event:/Racing_Game/Tire screech", transform.position);
 
         // Wait for the cooldown duration
-    //    yield return new WaitForSeconds(soundCooldownDuration);
-    //}
+        yield return new WaitForSeconds(soundCooldownDuration);
+    }
 
 
     //#endregion
