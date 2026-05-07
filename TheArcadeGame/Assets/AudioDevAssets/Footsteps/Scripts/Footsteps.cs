@@ -23,37 +23,20 @@ public class Footsteps : MonoBehaviour
     private void Start()
     {
         side = 1;
+        last_position = transform.position;
     }
 
     private void Update()
     {
-        delta_position = transform.position - last_position;
-        delta_rotation = Quaternion.Inverse(last_rotation) * transform.rotation;
-        if (Step())
+        float distance = Vector3.Distance(transform.position, last_position);
+        if (distance > minimum_stride_distance)
         {
+            side *= -1;
             initial = !walking;
             walking = true;
             stop_timer = 0f;
-            side *= -1;
 
-            // INITIAL FOOTSTEP
-            int initial_factor = initial ? 1 : 0;
-
-            // ROTATION
-            // side * d_rot: positive means same side; magnitude is strength, outside footsteps are heavier
-            float rotation_factor = Mathf.Clamp(delta_rotation.x * side, 0, maximum_rotation_amplitude);
-
-            // ELEVATION 
-            // the further the change in elevation, means heavier step
-            float elevation = delta_position.y;
-            float elevation_factor = Mathf.Min(Mathf.Abs(elevation), maximum_elevation);
-            float incline_factor = Mathf.InverseLerp(-maximum_elevation, maximum_elevation, elevation) * 2f - 1f;
-
-            // SPEED
-            // speed means steps are heavier
-            float speed_factor = delta_position.magnitude / Time.deltaTime;
-
-            PlayFootstep(rotation_factor, elevation_factor, incline_factor, speed_factor, initial_factor);
+            PlayFootstep();
 
             last_position = transform.position;
             last_rotation = transform.rotation;
@@ -64,37 +47,22 @@ public class Footsteps : MonoBehaviour
             if (stop_timer > final_footstep_threshold)
             {
                 walking = false;
-                PlayFootstep(0f, 0f, 0f, 0f, 2);
+                side *= -1;
+
+                Debug.Log("Final stop step triggered");
+                PlayFootstep();
+                last_position = transform.position;
             }
         }
     }
 
-    private void PlayFootstep(float rotation_factor, float elevation_factor, float incline_factor, float speed_factor, int footstep_type)
+    private void PlayFootstep()
     {
-        //dond need this anymore
-        //GetComponent<FMODUnity.StudioEventEmitter>().Play();
-        //Use this to play sound instead
-        var eventInstance = RuntimeManager.CreateInstance(footstep_sound);
-        //This is needed to select the audio from bank and then selecting the parameter
-        eventInstance.setParameterByNameWithLabel("CharacterFootsteps", "Value A");
-
-        //This part is used for doing one shot audio, important to release due to memory leaks
-        eventInstance.start();
-        eventInstance.release();
-        return;
-    }
-
-    private bool Step()
-    {
-        return Mathf.Abs(Vector3.Distance(transform.position, last_position)) > minimum_stride_distance;
-    }
-
-    private void GetWalkingSurface()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f))
-        {
-            int hit_layer = hit.collider.gameObject.layer;
-        }
+        FMOD.Studio.EventInstance event_instance = RuntimeManager.CreateInstance(footstep_sound);
+        FMOD.ATTRIBUTES_3D attributes = RuntimeUtils.To3DAttributes(gameObject);
+        event_instance.set3DAttributes(attributes);
+        event_instance.setParameterByName("FootSide", side * 100f);
+        FMODAudioUtilsObject.PlayInstance(event_instance);
         return;
     }
 }
