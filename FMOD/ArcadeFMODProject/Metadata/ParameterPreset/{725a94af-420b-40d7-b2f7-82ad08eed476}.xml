@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{725a94af-420b-40d7-b2f7-82ad08eed476}">
+		<property name="name">
+			<value>MusicPitch</value>
+		</property>
+		<relationship name="folder">
+			<destination>{775a0bd9-bda2-42ca-a2a9-2aed25c1a337}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4cf206d3-3714-439e-bb3c-04513e51e8fe}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4cf206d3-3714-439e-bb3c-04513e51e8fe}">
+		<property name="minimum">
+			<value>-10</value>
+		</property>
+		<property name="maximum">
+			<value>10</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

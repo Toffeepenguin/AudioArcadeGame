@@ -1,7 +1,9 @@
+using FMOD.Studio;
+using FMODUnity;
 using System;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FMODUnity;
 
 public class MLO_MovementScript : MonoBehaviour
 {
@@ -27,19 +29,28 @@ public class MLO_MovementScript : MonoBehaviour
     public EventReference FMOD_jump_sound;
     public EventReference FMOD_fall_sound;
     public EventReference FMOD_land_sound;
+    public EventReference FMOD_music_sound;
+    private FMOD.Studio.EventInstance music_instance;
 
-    // Start is called before the first frame update
+    public float music_state = -1f;
+    public float music_transition_speed = 5f;
+
     void Start()
     {
         playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         cam_y = playerCamera.transform.position.y;
         game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
         _input = input_manager.GetComponent<InputSubscription>();
+        
+        music_instance = RuntimeManager.CreateInstance(FMOD_music_sound);
+        music_instance.start();
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleMusicPitch();
+
         if (!colliding && !move && !dead) // not colliding when in landed state
         {
             dead = true;
@@ -178,5 +189,19 @@ public class MLO_MovementScript : MonoBehaviour
         move = false;
         playerCamera.transform.position = new Vector3(-13.4f, 17.37f, -29.4f);
         cam_y = playerCamera.transform.position.y;
+    }
+
+    private void HandleMusicPitch()
+    {
+        float target = -1f;
+        if (!dead && game_handler_script.GetScore() > 0) target = 1f;
+        music_state = Mathf.MoveTowards(music_state, target, Time.deltaTime * music_transition_speed);
+        music_instance.setParameterByName("MusicPitch", music_state);
+    }
+
+    private void OnDestroy()
+    {
+        music_instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        music_instance.release();
     }
 }
