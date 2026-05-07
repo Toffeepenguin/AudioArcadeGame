@@ -44,6 +44,7 @@ public class MLO_MovementScript : MonoBehaviour
         
         music_instance = RuntimeManager.CreateInstance(FMOD_music_sound);
         music_instance.start();
+        music_instance.release();
     }
 
     // Update is called once per frame

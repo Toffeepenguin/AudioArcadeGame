@@ -12,7 +12,7 @@ public static class FMODAudioUtilsObject
         event_instance.set3DAttributes(attributes);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(event_instance, game_object);
         PlayInstance(event_instance);
-        Debug.Log($"ATTENUATED SOUND: {sound.Path}", game_object);
+        //Debug.Log($"ATTENUATED SOUND: {sound.Path}", game_object);
         return event_instance;
     }
 
@@ -20,7 +20,7 @@ public static class FMODAudioUtilsObject
     {
         FMOD.Studio.EventInstance event_instance = FMODUnity.RuntimeManager.CreateInstance(sound);
         PlayInstance(event_instance);
-        Debug.Log($"UNATTENUATED SOUND: {sound.Path}");
+        //Debug.Log($"UNATTENUATED SOUND: {sound.Path}");
         return event_instance;
     }
 
