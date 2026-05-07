@@ -125489,9 +125489,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 10.02
+  OverrideMaxDistance: 20
 --- !u!65 &506254287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168754,9 +168754,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 10.01
+  OverrideMaxDistance: 20
 --- !u!65 &835099012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -290795,10 +290795,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5682633802629659838, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
       insertIndex: -1
       addedObject: {fileID: 835099010}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5014500871186048516, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1366098453}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
 --- !u!43 &1337069067
 Mesh:
@@ -296662,47 +296659,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &1366098449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5014500871186048516, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
-  m_PrefabInstance: {fileID: 1335599852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1366098452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5682633802629659838, guid: cca7ca7fef4016648a7396ddd83e4967, type: 3}
   m_PrefabInstance: {fileID: 1335599852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1366098453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366098449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -886827076
-      Data2: 1233411487
-      Data3: -1361538626
-      Data4: -771747674
-    Path: event:/NPCs/Morgan Freeman
-  Event: 
-  EventPlayTrigger: 3
-  EventStopTrigger: 4
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 3.49
 --- !u!1001 &1367848225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300871,9 +300832,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 10
+  OverrideMaxDistance: 20
 --- !u!65 &1403275138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -330256,9 +330217,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 10.02
+  OverrideMaxDistance: 20
 --- !u!43 &1568859942
 Mesh:
   m_ObjectHideFlags: 0
@@ -333578,9 +333539,9 @@ MonoBehaviour:
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
+  OverrideAttenuation: 0
   OverrideMinDistance: 1
-  OverrideMaxDistance: 10.03
+  OverrideMaxDistance: 20
 --- !u!65 &1573624241
 BoxCollider:
   m_ObjectHideFlags: 0
