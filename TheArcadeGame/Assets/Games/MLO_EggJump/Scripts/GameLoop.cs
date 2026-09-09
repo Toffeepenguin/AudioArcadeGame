@@ -18,10 +18,10 @@ public class MLO_GameHandlerScript : MonoBehaviour
     public GameObject background;
 
     public GameObject platform;
-    MLO_PlatformHandlerScript platform_handler;
+    PlatformHandlerScript platform_handler;
 
     public GameObject start_platform;
-    MLO_StartPlatformScript start_platform_handler;
+    StartPlatformScript start_platform_handler;
 
     public GameObject land_particle;
     GameObject[] particles;
@@ -52,8 +52,8 @@ public class MLO_GameHandlerScript : MonoBehaviour
     void Start()
     {
         player_handler = player.GetComponent<MLO_MovementScript>();
-        platform_handler = platform.GetComponent<MLO_PlatformHandlerScript>();
-        start_platform_handler = start_platform.GetComponent<MLO_StartPlatformScript>();
+        platform_handler = platform.GetComponent<PlatformHandlerScript>();
+        start_platform_handler = start_platform.GetComponent<StartPlatformScript>();
         transition_UI_script = transition_UI.GetComponent<MLO_TransitionScript>();
 
         score_rndr = score_UI.GetComponent<TextMeshProUGUI>();

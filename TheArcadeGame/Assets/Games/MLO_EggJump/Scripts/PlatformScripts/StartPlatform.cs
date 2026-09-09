@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MLO_StartPlatformScript : MonoBehaviour
+public class StartPlatformScript : MonoBehaviour
 {
     bool fall;
     bool falling;

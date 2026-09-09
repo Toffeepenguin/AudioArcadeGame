@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MLO_PlatformScript : MonoBehaviour
+public class PlatformScript : MonoBehaviour
 {
     int age;
     float spawn_time;

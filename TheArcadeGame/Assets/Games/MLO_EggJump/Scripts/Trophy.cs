@@ -4,15 +4,14 @@ using UnityEngine;
 public class MLO_TrophyScript : MonoBehaviour
 {
     public GameObject death_particle;
-    //AudioSource trophy_sound;
     public EventReference FMOD_trophy_sound;
     public GameObject trophyUI;
-    MLO_TrophyUIScript trophy_UI_script;
+    private MLO_TrophyUIScript trophy_UI_script;
 
-    float y_pos = 100.2f;
-    float spawn_time = 0f;
-    bool spawn = false;
-    bool collected = false;
+    private float y_pos = 100.2f;
+    private float spawn_time = 0f;
+    private bool spawn = false;
+    private bool collected = false;
 
     void Start()
     {

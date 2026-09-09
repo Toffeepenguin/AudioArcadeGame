@@ -1,30 +1,28 @@
 using FMODUnity;
 using UnityEngine;
 
-public class MLO_PlatformHandlerScript : MonoBehaviour
+public class PlatformHandlerScript : MonoBehaviour
 {
     public GameObject[] platformList;
     public GameObject platform;
-    int start;
+    private int start;
     public int current_direction = 1; // up = 0, right = 1, down = 2, left = 3
-    int next_direction;
-    int hor;
-    int ver; 
-    int spacing = 4;
-    Vector3 location;
+    private int next_direction;
+    private int hor;
+    private int ver;
+    private Vector2 next_direction_offset;
+    private int spacing = 4;
+    private Vector3 location;
     public int num_of_platforms;
-    float platform_interval = 1f;
-    float time_elapsed;
+    private float platform_interval = 1f;
+    private float time_elapsed;
     static System.Random r;
-    bool trophy_spawned = false;
+    private bool trophy_spawned = false;
     public bool play_game;
-
     public GameObject game_handler;
-    MLO_GameHandlerScript game_handler_script;
-
+    private MLO_GameHandlerScript game_handler_script;
     public GameObject trophy;
-    MLO_TrophyScript trophy_script;
-
+    private MLO_TrophyScript trophy_script;
     public EventReference FMOD_platform_rise_sound;
 
     void Start()
@@ -44,15 +42,11 @@ public class MLO_PlatformHandlerScript : MonoBehaviour
     public void InstantiatePlatform(Vector3? position_override = null) 
     {
         // loop start pointer when it surpasses the last index
-        if (start <= num_of_platforms - 1) 
-        {
-            start += 1;
-        }
-        else
-        {
-            start = 0;
-        }
+        if (start <= num_of_platforms - 1) start += 1;
+        else start = 0;
 
+        // flips the next direction if it is going in the opposite direction
+        // (only forward, left or right)
         next_direction = r.Next(0, 4);
         switch (current_direction)
         {
@@ -85,20 +79,24 @@ public class MLO_PlatformHandlerScript : MonoBehaviour
         switch (next_direction)
         {
             case 0:
-                hor = 0;
-                ver = spacing;
+                //hor = 0;
+                //ver = spacing;
+                next_direction_offset = Vector2.up * spacing;
                 break;
             case 1:
-                hor = spacing;
-                ver = 0;
+                //hor = spacing;
+                //ver = 0;
+                next_direction_offset = Vector2.right * spacing;
                 break;
             case 2:
-                hor = 0;
-                ver = -spacing;
+                //hor = 0;
+                //ver = -spacing;
+                next_direction_offset = Vector2.up * -spacing;
                 break;
             case 3:
-                hor = -spacing;
-                ver = 0;
+                //hor = -spacing;
+                //ver = 0;
+                next_direction_offset = Vector2.right * -spacing;
                 break;
         }
 
@@ -106,23 +104,28 @@ public class MLO_PlatformHandlerScript : MonoBehaviour
 
         if (position_override == null) 
         {
-            location = new Vector3(location.x + hor, -3, location.z + ver);
+            //location = new Vector3(location.x + hor, -3, location.z + ver);
+            location = new Vector3(
+                location.x + next_direction_offset.x, 
+                -3, 
+                location.z + next_direction_offset.y);
         }
         else
         {
             location = (Vector3)position_override;
         }
 
+        // age each platform
         for (int i = 0; i < num_of_platforms + 1; i++)
         {
             if (platformList[i] != null)
             {
-                platformList[i].GetComponent<MLO_PlatformScript>().updateAge();
+                platformList[i].GetComponent<PlatformScript>().updateAge();
             }
         }
 
         platformList[start] = Instantiate(platform, location, Quaternion.identity);
-        platformList[start].AddComponent<MLO_PlatformScript>();
+        platformList[start].AddComponent<PlatformScript>();
         platformList[start].AddComponent<BoxCollider>().isTrigger = true;
         platformList[start].GetComponent<BoxCollider>().center = new Vector3(
             platformList[start].GetComponent<BoxCollider>().center.x,

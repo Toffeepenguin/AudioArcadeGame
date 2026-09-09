@@ -13,7 +13,7 @@ public class MLO_MovementScript : MonoBehaviour
     bool dead = false;
     Vector3 start_position = new Vector3(0, 1, 0);
     Vector3 end_position = new Vector3(0, 0, 0);
-    public MLO_PlatformHandlerScript platform_script;
+    public PlatformHandlerScript platform_script;
     Camera playerCamera;
     bool colliding = true;
     float cam_y;
