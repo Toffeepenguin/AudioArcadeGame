@@ -6,14 +6,13 @@ public class MLO_StartPlatformScript : MonoBehaviour
     bool falling;
     float spawn_time;
     MeshRenderer rndr;
-    // Start is called before the first frame update
+
     void Start()
     {
         fall = false;
         rndr = GetComponent<MeshRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (fall)
@@ -28,10 +27,12 @@ public class MLO_StartPlatformScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, Mathf.Cos((Time.time - spawn_time) % 1 * Mathf.PI * 2) * 2 - 5, transform.position.z);
         }
     }
+
     public void fallPlatform()
     {
         fall = true;
     }
+
     public void PlatformReset()
     {
         fall = false;

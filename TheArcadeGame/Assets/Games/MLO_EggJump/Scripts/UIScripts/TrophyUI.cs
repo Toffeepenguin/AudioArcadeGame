@@ -9,7 +9,6 @@ public class MLO_TrophyUIScript : MonoBehaviour
     TextMeshProUGUI rndr;
     float lerp_count;
 
-    // Start is called before the first frame update
     void Start()
     {
         run = false;
@@ -23,7 +22,6 @@ public class MLO_TrophyUIScript : MonoBehaviour
         run = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (run)

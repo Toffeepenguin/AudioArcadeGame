@@ -9,17 +9,10 @@ public class MLO_UIHandlerScript : MonoBehaviour
     public GameObject transition_UI;
     MLO_TransitionScript transition_UI_script;
 
-    // Start is called before the first frame update
     void Start()
     {
         rndr = GetComponent<CanvasRenderer>();
         transition_UI_script = transition_UI.GetComponent<MLO_TransitionScript>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void StartGame()

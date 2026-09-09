@@ -44,13 +44,11 @@ public class MLO_GameHandlerScript : MonoBehaviour
     public GameObject help_UI;
     MLO_HelpScript help_script;
    
-    //public AudioSource level_sound;
     public EventReference FMOD_level_sound;
     public EventReference FMOD_coin_sound;
 
     float speed_multiplier = 2.66f;
 
-    // Start is called before the first frame update
     void Start()
     {
         player_handler = player.GetComponent<MLO_MovementScript>();
@@ -81,7 +79,6 @@ public class MLO_GameHandlerScript : MonoBehaviour
         wait = false;
         platform_handler.play_game = true;
 
-        // update speed multipler
         speed_multiplier = 2.66f;
         player_handler.UpdateSpeed(speed_multiplier);
 
@@ -100,19 +97,15 @@ public class MLO_GameHandlerScript : MonoBehaviour
         wait = true;
         wait_count = 0f;
 
-        // reset player position
         player_handler.PlayerReset();
 
-        // reset platforms
         platform_handler.PlatformReset();
 
-        // reset start platform
         start_platform_handler.PlatformReset();
     }
 
     public void IncreaseScoreLevel(Vector3 platform_position)
     {
-        // increase score with the level (greater increase of score with higher level)
         score += level + 1;
 
         if (particle_ptr >= 3) {
@@ -127,13 +120,8 @@ public class MLO_GameHandlerScript : MonoBehaviour
 
         if (score > Mathf.Pow((float)level+1, 2) * 10) 
         {
-            //level_sound.Play();
             FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
-
-            // increment level
             level++;
-
-            // update speed multipler
             platform_handler.UpdateInterval(1 / (level + 1.5f) + .3f);
             speed_multiplier = 12 - (100 / (level + 10));
             player_handler.UpdateSpeed(speed_multiplier);

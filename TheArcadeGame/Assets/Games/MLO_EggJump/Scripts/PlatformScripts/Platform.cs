@@ -7,7 +7,7 @@ public class MLO_PlatformScript : MonoBehaviour
     float spawn_time;
     bool fall = false;
     MeshRenderer rndr;
-    // Start is called before the first frame update
+
     void Start()
     {
         age = 0;
@@ -16,7 +16,6 @@ public class MLO_PlatformScript : MonoBehaviour
         rndr.material.color = new Color(rndr.material.color.r, rndr.material.color.g, rndr.material.color.b, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time - spawn_time <.5f)
@@ -37,6 +36,7 @@ public class MLO_PlatformScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, Mathf.Cos((Time.time - spawn_time) % 1 * Mathf.PI * 2) * 2 - 5, transform.position.z);
         }
     }
+
     public void updateAge()
     {
         age++;

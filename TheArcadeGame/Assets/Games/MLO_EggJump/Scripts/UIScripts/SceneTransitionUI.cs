@@ -11,7 +11,6 @@ public class MLO_TransitionScript : MonoBehaviour
         posControl = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(0, -25 * Time.deltaTime, 0);

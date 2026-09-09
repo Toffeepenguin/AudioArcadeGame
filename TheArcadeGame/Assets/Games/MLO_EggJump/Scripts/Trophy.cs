@@ -16,7 +16,6 @@ public class MLO_TrophyScript : MonoBehaviour
 
     void Start()
     {
-        //trophy_sound = GetComponent<AudioSource>();
         trophy_UI_script = trophyUI.GetComponent<MLO_TrophyUIScript>();
         transform.position = new Vector3(0, y_pos, 0);
     }
@@ -26,7 +25,6 @@ public class MLO_TrophyScript : MonoBehaviour
         return collected;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = new Vector3(transform.position.x, y_pos + Mathf.Sin(Time.time) / 4, transform.position.z);
@@ -49,7 +47,6 @@ public class MLO_TrophyScript : MonoBehaviour
         {
             collected = true;
             spawn_time = Time.time;
-            //trophy_sound.Play();
             FMODAudioUtilsObject.Get3DAttRef(FMOD_trophy_sound, gameObject);
             trophy_UI_script.RunUI();
             Instantiate(death_particle, transform.position, Quaternion.identity);
