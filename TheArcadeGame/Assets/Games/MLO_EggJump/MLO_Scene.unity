@@ -262,10 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb86c141cdedea48b27fb0b9c042912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformList: []
-  platform: {fileID: 919132149155446097, guid: d7934eaf1b304a043b334df32a4ada79, type: 3}
+  platforms: []
+  platform_count: 3
+  platform: {fileID: 9151481156502514501, guid: 5d167a5969e38374ea7736b1b82fa7ac, type: 3}
   current_direction: 1
-  num_of_platforms: 5
+  spacing: 4
   play_game: 0
   game_handler: {fileID: 20117543}
   trophy: {fileID: 1640506084}
