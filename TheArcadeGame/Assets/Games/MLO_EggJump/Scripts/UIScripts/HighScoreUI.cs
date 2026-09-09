@@ -17,12 +17,12 @@ public class MLO_RecordUIScript : MonoBehaviour
     {
         game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
         trophy_script = trophy.GetComponent<MLO_TrophyScript>();
-        trophy_score = game_handler_script.GetTrophyScore();
+        trophy_score = game_handler_script.trophy_score;
     }
 
     void Update()
     {
-        high_score = game_handler_script.GetHighScore();
+        high_score = game_handler_script.high_score;
         if (high_score != 0) {
             text.enabled = true;
             if (high_score < trophy_score) {

@@ -12,8 +12,8 @@ public class MLO_LevelUIScript : MonoBehaviour
         game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
     }
 
-    void Update()
+    public void UpdateLevelUI()
     {
-        text.SetText("LEVEL: " + (game_handler_script.GetLevel() + 1));
+        text.SetText("LEVEL: " + (game_handler_script.level + 1));
     }
 }

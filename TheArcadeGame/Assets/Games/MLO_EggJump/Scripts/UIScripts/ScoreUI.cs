@@ -12,8 +12,8 @@ public class MLO_ScoreUIScript : MonoBehaviour
         game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
     }
 
-    void Update()
+    public void UpdateScoreUI()
     {
-        text.SetText("SCORE: " + game_handler_script.GetScore());
+        text.SetText("SCORE: " + game_handler_script.score);
     }
 }

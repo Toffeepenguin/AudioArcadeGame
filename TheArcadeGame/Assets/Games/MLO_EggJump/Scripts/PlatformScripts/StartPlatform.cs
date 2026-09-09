@@ -28,7 +28,7 @@ public class StartPlatformScript : MonoBehaviour
         }
     }
 
-    public void fallPlatform()
+    public void Fall()
     {
         fall = true;
     }

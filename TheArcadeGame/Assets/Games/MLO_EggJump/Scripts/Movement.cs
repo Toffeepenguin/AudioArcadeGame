@@ -91,7 +91,7 @@ public class MLO_MovementScript : MonoBehaviour
                     FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
                 }
 
-                if (move && game_handler_script.GetScore() == 0)
+                if (move && game_handler_script.score == 0)
                 {
                     game_handler_script.StartGame();
                 }
@@ -174,9 +174,9 @@ public class MLO_MovementScript : MonoBehaviour
         }
     }
 
-    public void UpdateSpeed(float speed)
+    public void UpdateSpeed()
     {
-        speed_multiplier = speed;
+        speed_multiplier = game_handler.GetComponent<MLO_GameHandlerScript>().speed_multiplier;
     }
 
     public void PlayerReset()
@@ -195,7 +195,7 @@ public class MLO_MovementScript : MonoBehaviour
     private void HandleMusicPitch()
     {
         float target = -1f;
-        if (!dead && game_handler_script.GetScore() > 0) target = 1f;
+        if (!dead && game_handler_script.score > 0) target = 1f;
         music_state = Mathf.MoveTowards(music_state, target, Time.deltaTime * music_transition_speed);
         music_instance.setParameterByName("MusicPitch", music_state);
     }

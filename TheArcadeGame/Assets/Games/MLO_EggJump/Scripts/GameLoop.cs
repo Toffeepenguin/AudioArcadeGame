@@ -1,92 +1,71 @@
 using FMODUnity;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class MLO_GameHandlerScript : MonoBehaviour
 {
-    int level = 0;
-    int score = 0;
-    int high_score = 0;
-    int trophy_score = 100;
-    bool started = false;
-    bool wait = true;
-    float wait_count = 0f;
-    bool ended = true;
+    public int level = 0;
+    public int score = 0;
+    public int high_score = 0;
+    public int trophy_score;
+    private bool started = false;
+    private bool wait = true;
+    private float wait_count = 0f;
+    private bool ended = true;
     public GameObject player;
-    MLO_MovementScript player_handler;
 
-    public GameObject background;
+    [SerializeField] private PlatformHandlerScript platform_handler;
 
-    public GameObject platform;
-    PlatformHandlerScript platform_handler;
+    [SerializeField] private GameObject land_particle_prefab;
+    private readonly List<ParticleSystem> particles = new();
+    private int current_particle_index;
 
-    public GameObject start_platform;
-    StartPlatformScript start_platform_handler;
+    private float lerp_count = 0f;
 
-    public GameObject land_particle;
-    GameObject[] particles;
-    int particle_ptr;
-
-    public GameObject transition_UI;
-    MLO_TransitionScript transition_UI_script;
-    public GameObject score_UI;
-    TextMeshProUGUI score_rndr;
-    public GameObject level_UI;
-    TextMeshProUGUI level_rndr;
-    public GameObject logo_UI;
-    TextMeshProUGUI logo_rndr;
-    public GameObject record_UI;
-    TextMeshProUGUI record_rndr;
-    public GameObject fee_UI;
-    TextMeshProUGUI fee_rndr;
-    float lerp_count = 0f;
-
-    public GameObject help_UI;
-    MLO_HelpScript help_script;
+    [SerializeField] private MLO_TransitionScript transition_UI_script;
+    [SerializeField] private TextMeshProUGUI score_rndr;
+    [SerializeField] private TextMeshProUGUI level_rndr;
+    [SerializeField] private TextMeshProUGUI logo_rndr;
+    [SerializeField] private TextMeshProUGUI record_rndr;
+    [SerializeField] private TextMeshProUGUI fee_rndr;
    
     public EventReference FMOD_level_sound;
     public EventReference FMOD_coin_sound;
 
-    float speed_multiplier = 2.66f;
+    [SerializeField] private UnityEvent GameStarted;
+    [SerializeField] private UnityEvent GameEnded;
+    [SerializeField] private UnityEvent GetScore;
+    [SerializeField] private UnityEvent GetLevel;
+    [SerializeField] private UnityEvent GetTrophy;
+    [SerializeField] private UnityEvent GetHelp;
 
-    void Start()
+    [HideInInspector] public float speed_multiplier => 2.5f * Mathf.Pow(1.1f, level);
+
+    private void Start()
     {
-        player_handler = player.GetComponent<MLO_MovementScript>();
-        platform_handler = platform.GetComponent<PlatformHandlerScript>();
-        start_platform_handler = start_platform.GetComponent<StartPlatformScript>();
-        transition_UI_script = transition_UI.GetComponent<MLO_TransitionScript>();
-
-        score_rndr = score_UI.GetComponent<TextMeshProUGUI>();
-        level_rndr = level_UI.GetComponent<TextMeshProUGUI>();
-        logo_rndr = logo_UI.GetComponent<TextMeshProUGUI>();
-        record_rndr = record_UI.GetComponent<TextMeshProUGUI>();
-        fee_rndr = fee_UI.GetComponent<TextMeshProUGUI>();
-
-        help_script = help_UI.GetComponent<MLO_HelpScript>();
-
-        particles = new GameObject[4];
-        for (int i = 0; i < 4; i++)
+        if (land_particle_prefab != null) for (int i = 0; i < 4; i++)
         {
-            particles[i] = Instantiate(land_particle, new Vector3(1000, 1000, 1000), Quaternion.identity);
+            GameObject obj = Instantiate(land_particle_prefab, new Vector3(1000f, 1000f, 1000f), Quaternion.identity);
+            if (obj.TryGetComponent(out ParticleSystem ps)) particles.Add(ps);
         }
-        particle_ptr = 0;
+        current_particle_index = 0;
     }
+
     public void StartGame()
     {
         started = true;
+        ended = false;
+        lerp_count = 0f;
         FMODAudioUtilsObject.GetUnattenuatedRef(FMOD_coin_sound);
-        help_script.StopHelp();
         wait = false;
-        platform_handler.play_game = true;
-
-        speed_multiplier = 2.66f;
-        player_handler.UpdateSpeed(speed_multiplier);
-
-        start_platform_handler.fallPlatform();
+        GameStarted.Invoke();
     }
 
     public void EndGame()
     {
+        started = false;
         if (high_score < score)
         {
             high_score = score;
@@ -96,57 +75,27 @@ public class MLO_GameHandlerScript : MonoBehaviour
         ended = true;
         wait = true;
         wait_count = 0f;
-
-        player_handler.PlayerReset();
-
-        platform_handler.PlatformReset();
-
-        start_platform_handler.PlatformReset();
+        GameEnded.Invoke();
     }
 
     public void IncreaseScoreLevel(Vector3 platform_position)
     {
         score += level + 1;
-
-        if (particle_ptr >= 3) {
-            particle_ptr = 0;
+        GetScore.Invoke();
+        if (particles.Count > 0)
+        {
+            current_particle_index = (current_particle_index + 1) % particles.Count;
+            particles[current_particle_index].transform.position = platform_position;
+            particles[current_particle_index].Emit(1);
         }
-        else {
-            particle_ptr++;
-        }
-        particles[particle_ptr].GetComponent<ParticleSystem>().transform.position = platform_position;
-        particles[particle_ptr].GetComponent<ParticleSystem>().Emit(1);
-        
-
-        if (score > Mathf.Pow((float)level+1, 2) * 10) 
+        while (score >= 12f * Mathf.Pow(1.215f, level + 1)) 
         {
             FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
             level++;
-            platform_handler.UpdateInterval(1 / (level + 1.5f) + .3f);
-            speed_multiplier = 12 - (100 / (level + 10));
-            player_handler.UpdateSpeed(speed_multiplier);
+            GetLevel.Invoke();
         }
     }
 
-    public int GetLevel()
-    {
-        return level;
-    }
-
-    public int GetScore()
-    {
-        return score;
-    }
-
-    public int GetHighScore()
-    {
-        return high_score;
-    }
-
-    public int GetTrophyScore()
-    {
-        return trophy_score;
-    }
     public void Menu()
     {
         transition_UI_script.Move();
@@ -157,33 +106,34 @@ public class MLO_GameHandlerScript : MonoBehaviour
         if (wait)
         {
             wait_count += Time.deltaTime;
+            if (wait_count > 10f)
+            {
+                wait = false;
+                GetHelp.Invoke();
+            }
         }
         if (started) {
             lerp_count += Time.deltaTime;
-            score_rndr.faceColor = new Color(score_rndr.material.color.r, score_rndr.material.color.g, score_rndr.material.color.b, lerp_count / 2);
-            level_rndr.faceColor = new Color(level_rndr.material.color.r, level_rndr.material.color.g, level_rndr.material.color.b, lerp_count / 2);
-            record_rndr.faceColor = new Color(record_rndr.material.color.r, record_rndr.material.color.g, record_rndr.material.color.b, 1 - lerp_count / 2);
-            logo_rndr.faceColor = new Color(logo_rndr.material.color.r, logo_rndr.material.color.g, logo_rndr.material.color.b, 1 - lerp_count / 2);
-            fee_rndr.faceColor = new Color(fee_rndr.material.color.r, fee_rndr.material.color.g, fee_rndr.material.color.b, 1 - lerp_count / 2);
+            float progress = lerp_count / 2f;
+            score_rndr.alpha = progress;
+            level_rndr.alpha = progress;
+            float inverse_progress = 1f - progress;
+            record_rndr.alpha = inverse_progress;
+            logo_rndr.alpha = inverse_progress;
+            fee_rndr.alpha = inverse_progress;
+            if (lerp_count > 2)
+            {
+                lerp_count = 0;
+                started = false;
+            }
         }
-
         else if (ended) {
-            score_rndr.faceColor = new Color(score_rndr.material.color.r, score_rndr.material.color.g, score_rndr.material.color.b, 0);
-            level_rndr.faceColor = new Color(level_rndr.material.color.r, level_rndr.material.color.g, level_rndr.material.color.b, 0);
-            record_rndr.faceColor = new Color(record_rndr.material.color.r, record_rndr.material.color.g, record_rndr.material.color.b, 1);
-            logo_rndr.faceColor = new Color(level_rndr.material.color.r, level_rndr.material.color.g, level_rndr.material.color.b, 1);
-            fee_rndr.faceColor = new Color(fee_rndr.material.color.r, fee_rndr.material.color.g, fee_rndr.material.color.b, 1);
+            score_rndr.alpha = 0f;
+            level_rndr.alpha = 0f;
+            record_rndr.alpha = 1f;
+            logo_rndr.alpha = 1f;
+            fee_rndr.alpha = 1f;
             ended = false;
-        }
-        if (lerp_count > 2 && started)
-        {
-            lerp_count = 0;
-            started = false;
-        }
-        if (wait_count > 10f && wait)
-        {
-            wait = false;
-            help_script.GetHelp();
         }
     }
 }

@@ -1,4 +1,5 @@
 using FMODUnity;
+using log4net.Core;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class PlatformHandlerScript : MonoBehaviour
     private float platform_interval = 1f;
     private int current_platform_index = 0;
     public GameObject platform;
-    public int current_direction = 1; // up = 0, right = 1, down = 2, left = 3
+    private int current_direction;
     private int next_direction;
     private Vector2 next_direction_offset;
     public int spacing;
@@ -18,43 +19,32 @@ public class PlatformHandlerScript : MonoBehaviour
 
     private float time_elapsed;
     private bool trophy_spawned = false;
-    public bool play_game;
+    private bool playing;
 
-    public GameObject game_handler;
-    private MLO_GameHandlerScript game_handler_script;
-    public GameObject trophy;
-    private MLO_TrophyScript trophy_script;
+    private static readonly Vector2[] direction_vectors = new[]
+    {
+        Vector2.up,
+        Vector2.right,
+        Vector2.down,
+        Vector2.left
+    };
+
+    [SerializeField] private MLO_GameHandlerScript game_handler_script;
+    [SerializeField] private MLO_TrophyScript trophy_script;
     public EventReference FMOD_platform_rise_sound;
 
     void Start()
     {
-        game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
-        trophy_script = trophy.GetComponent<MLO_TrophyScript>();
+        current_direction = Random.Range(0, 4);
         for (int i = 0; i < platform_count; i++) platforms.Add(Instantiate(platform, Vector3.up * 500, Quaternion.identity));
-        trophy.transform.position = Vector3.up * 1000;
         PositionNewPlatform();
     }
 
     public void PositionNewPlatform() 
     {
-        // forces no 180 deg turns
         next_direction = Random.Range(0, 4);
         if ((current_direction + 2) % 4 == next_direction) next_direction = current_direction;
-        switch (next_direction)
-        {
-            case 0:
-                next_direction_offset = Vector2.up * spacing;
-                break;
-            case 1:
-                next_direction_offset = Vector2.right * spacing;
-                break;
-            case 2:
-                next_direction_offset = Vector2.down * spacing;
-                break;
-            case 3:
-                next_direction_offset = Vector2.left * spacing;
-                break;
-        }
+        next_direction_offset = direction_vectors[next_direction] * spacing;
 
         current_direction = next_direction;
         location = new Vector3(location.x + next_direction_offset.x, -3, location.z + next_direction_offset.y);
@@ -64,7 +54,7 @@ public class PlatformHandlerScript : MonoBehaviour
         platforms[next].GetComponent<PlatformScript>().Fall();
         current_platform_index = next;
 
-        if (game_handler_script.GetScore() >= game_handler_script.GetTrophyScore() && !trophy_spawned) 
+        if (game_handler_script.score >= game_handler_script.trophy_score && !trophy_spawned) 
         {
             trophy_spawned = true;
             trophy_script.SpawnTrophy(location + Vector3.up * 3);
@@ -74,7 +64,7 @@ public class PlatformHandlerScript : MonoBehaviour
 
     private void Update()
     {
-        if (play_game)
+        if (playing)
         {
             time_elapsed += Time.deltaTime;
             if (time_elapsed > platform_interval)
@@ -85,15 +75,20 @@ public class PlatformHandlerScript : MonoBehaviour
         }
     }
 
-    public void UpdateInterval(float interval)
+    public void UpdateInterval()
     {
-        platform_interval = interval;
+        platform_interval = 1 / (game_handler_script.level + 1.5f) + .3f;
+    }
+
+    public void StartGame()
+    {
+        playing = true;
     }
 
     public void PlatformReset()
     {
         foreach (GameObject platform in platforms) platform.GetComponent<PlatformScript>().Fall();
-        play_game = false;
+        playing = false;
         location = new Vector3(0, -3, 0);
         platform_interval = 1f;
         PositionNewPlatform();

@@ -163,18 +163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55d71a2f66ec8149917a0691072d907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  score: 0
+  high_score: 0
+  trophy_score: 100
   player: {fileID: 1276429028}
-  background: {fileID: 335109647}
-  platform: {fileID: 262357022}
-  start_platform: {fileID: 2143535797}
-  land_particle: {fileID: 7843100349195225031, guid: 8b10af8688bb6714ba7ba4dd16e7770b, type: 3}
-  transition_UI: {fileID: 689952411}
-  score_UI: {fileID: 1379911451}
-  level_UI: {fileID: 1673844696}
-  logo_UI: {fileID: 742120198}
-  record_UI: {fileID: 1512661800}
-  fee_UI: {fileID: 373182868}
-  help_UI: {fileID: 1744863457}
+  platform_handler: {fileID: 262357023}
+  land_particle_prefab: {fileID: 7843100349195225031, guid: 8b10af8688bb6714ba7ba4dd16e7770b, type: 3}
+  transition_UI_script: {fileID: 689952415}
+  score_rndr: {fileID: 1379911453}
+  level_rndr: {fileID: 1673844699}
+  logo_rndr: {fileID: 742120200}
+  record_rndr: {fileID: 1512661802}
+  fee_rndr: {fileID: 373182870}
   FMOD_level_sound:
     Guid:
       Data1: 204700778
@@ -189,6 +190,169 @@ MonoBehaviour:
       Data3: -1267105607
       Data4: -159843382
     Path: event:/EggJumpSounds/EnterCoin
+  GameStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2143535802}
+        m_TargetAssemblyTypeName: StartPlatformScript, Test
+        m_MethodName: Fall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1276429033}
+        m_TargetAssemblyTypeName: MLO_MovementScript, Test
+        m_MethodName: UpdateSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1744863462}
+        m_TargetAssemblyTypeName: MLO_HelpScript, Test
+        m_MethodName: StopHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 262357023}
+        m_TargetAssemblyTypeName: PlatformHandlerScript, Test
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GameEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1276429033}
+        m_TargetAssemblyTypeName: MLO_MovementScript, Test
+        m_MethodName: PlayerReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 262357023}
+        m_TargetAssemblyTypeName: PlatformHandlerScript, Test
+        m_MethodName: PlatformReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2143535802}
+        m_TargetAssemblyTypeName: StartPlatformScript, Test
+        m_MethodName: PlatformReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GetScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1379911455}
+        m_TargetAssemblyTypeName: MLO_ScoreUIScript, Test
+        m_MethodName: UpdateScoreUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GetLevel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1276429033}
+        m_TargetAssemblyTypeName: MLO_MovementScript, Test
+        m_MethodName: UpdateSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1673844701}
+        m_TargetAssemblyTypeName: MLO_LevelUIScript, Test
+        m_MethodName: UpdateLevelUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 262357023}
+        m_TargetAssemblyTypeName: PlatformHandlerScript, Test
+        m_MethodName: UpdateInterval
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GetTrophy:
+    m_PersistentCalls:
+      m_Calls: []
+  GetHelp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1744863462}
+        m_TargetAssemblyTypeName: MLO_HelpScript, Test
+        m_MethodName: GetHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  speed_multiplier: 2.66
 --- !u!1 &229503013
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,11 +429,9 @@ MonoBehaviour:
   platforms: []
   platform_count: 3
   platform: {fileID: 9151481156502514501, guid: 5d167a5969e38374ea7736b1b82fa7ac, type: 3}
-  current_direction: 1
   spacing: 4
-  play_game: 0
-  game_handler: {fileID: 20117543}
-  trophy: {fileID: 1640506084}
+  game_handler_script: {fileID: 20117545}
+  trophy_script: {fileID: 1640506085}
   FMOD_platform_rise_sound:
     Guid:
       Data1: 1620925130
