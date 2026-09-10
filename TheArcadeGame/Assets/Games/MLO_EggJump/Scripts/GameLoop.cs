@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
-public class MLO_GameHandlerScript : MonoBehaviour
+public class GameLoop : MonoBehaviour
 {
     public int level = 0;
     public int score = 0;
@@ -16,7 +16,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
     private bool ended = true;
     public GameObject player;
 
-    [SerializeField] private PlatformHandlerScript platform_handler;
+    [SerializeField] private PlatformHandler platform_handler;
 
     [SerializeField] private GameObject land_particle_prefab;
     private readonly List<ParticleSystem> particles = new();
@@ -80,7 +80,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
 
     public void IncreaseScoreLevel(Vector3 platform_position)
     {
-        score += level + 1;
+        score ++;
         GetScore.Invoke();
         if (particles.Count > 0)
         {
@@ -88,7 +88,7 @@ public class MLO_GameHandlerScript : MonoBehaviour
             particles[current_particle_index].transform.position = platform_position;
             particles[current_particle_index].Emit(1);
         }
-        while (score >= 12f * Mathf.Pow(1.215f, level + 1)) 
+        while (score >= 10f * Mathf.Pow(1.35f, level)) 
         {
             FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
             level++;

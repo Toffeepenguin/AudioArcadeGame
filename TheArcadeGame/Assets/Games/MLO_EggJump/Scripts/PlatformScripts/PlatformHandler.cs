@@ -1,10 +1,9 @@
 using FMODUnity;
 using log4net.Core;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class PlatformHandlerScript : MonoBehaviour
+public class PlatformHandler : MonoBehaviour
 {
     public List<GameObject> platforms;
     public int platform_count;
@@ -29,7 +28,7 @@ public class PlatformHandlerScript : MonoBehaviour
         Vector2.left
     };
 
-    [SerializeField] private MLO_GameHandlerScript game_handler_script;
+    [SerializeField] private GameLoop game_handler_script;
     [SerializeField] private MLO_TrophyScript trophy_script;
     public EventReference FMOD_platform_rise_sound;
 
@@ -50,8 +49,8 @@ public class PlatformHandlerScript : MonoBehaviour
         location = new Vector3(location.x + next_direction_offset.x, -3, location.z + next_direction_offset.y);
 
         int next = (current_platform_index + 1) % platform_count;
-        platforms[current_platform_index].GetComponent<PlatformScript>().Rise(location);
-        platforms[next].GetComponent<PlatformScript>().Fall();
+        platforms[current_platform_index].GetComponent<Platform>().Rise(location);
+        platforms[next].GetComponent<Platform>().Fall();
         current_platform_index = next;
 
         if (game_handler_script.score >= game_handler_script.trophy_score && !trophy_spawned) 
@@ -87,7 +86,7 @@ public class PlatformHandlerScript : MonoBehaviour
 
     public void PlatformReset()
     {
-        foreach (GameObject platform in platforms) platform.GetComponent<PlatformScript>().Fall();
+        foreach (GameObject platform in platforms) platform.GetComponent<Platform>().Fall();
         playing = false;
         location = new Vector3(0, -3, 0);
         platform_interval = 1f;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlatformScript : MonoBehaviour
+public class Platform : MonoBehaviour
 {
     private MeshRenderer platform_renderer;
     private BoxCollider platform_collider;

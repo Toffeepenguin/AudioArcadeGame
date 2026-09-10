@@ -6,7 +6,7 @@ public class MLO_TrophyScript : MonoBehaviour
     public GameObject death_particle;
     public EventReference FMOD_trophy_sound;
     public GameObject trophyUI;
-    private MLO_TrophyUIScript trophy_UI_script;
+    private TrophyUI trophy_UI_script;
 
     private float y_pos = 100.2f;
     private float spawn_time = 0f;
@@ -15,7 +15,7 @@ public class MLO_TrophyScript : MonoBehaviour
 
     void Start()
     {
-        trophy_UI_script = trophyUI.GetComponent<MLO_TrophyUIScript>();
+        trophy_UI_script = trophyUI.GetComponent<TrophyUI>();
         transform.position = new Vector3(0, y_pos, 0);
     }
 

@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MLO_TrophyUIScript : MonoBehaviour
+public class TrophyUI : MonoBehaviour
 {
-    bool run;
-    TextMeshProUGUI rndr;
-    float lerp_count;
+    private bool run;
+    private TextMeshProUGUI rndr;
+    private float lerp_count;
 
     void Start()
     {

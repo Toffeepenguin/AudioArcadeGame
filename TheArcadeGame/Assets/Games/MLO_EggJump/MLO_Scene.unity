@@ -352,7 +352,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  speed_multiplier: 2.66
 --- !u!1 &229503013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,9 +1384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f8b0b774dcc4643be60f85fc7a8c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_script: {fileID: 262357023}
-  game_handler: {fileID: 20117543}
-  input_manager: {fileID: 229503013}
+  game_handler_script: {fileID: 20117545}
+  inputs: {fileID: 229503014}
   FMOD_jump_sound:
     Guid:
       Data1: -1481064542
@@ -1416,8 +1414,6 @@ MonoBehaviour:
       Data3: -280454473
       Data4: -31347449
     Path: event:/Jumping Game/Jumping_Game_Music
-  music_state: -1
-  music_transition_speed: 5
 --- !u!54 &1276429034
 Rigidbody:
   m_ObjectHideFlags: 0

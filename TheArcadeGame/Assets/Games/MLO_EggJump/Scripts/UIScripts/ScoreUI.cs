@@ -1,15 +1,15 @@
 using TMPro;
 using UnityEngine;
 
-public class MLO_ScoreUIScript : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public GameObject game_handler;
-    MLO_GameHandlerScript game_handler_script;
+    GameLoop game_handler_script;
 
     void Start()
     {
-        game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
+        game_handler_script = game_handler.GetComponent<GameLoop>();
     }
 
     public void UpdateScoreUI()

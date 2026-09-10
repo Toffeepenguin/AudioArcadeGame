@@ -1,13 +1,11 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
 
-public class MLO_RecordUIScript : MonoBehaviour
+public class RecordUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public GameObject game_handler;
-    MLO_GameHandlerScript game_handler_script;
+    GameLoop game_handler_script;
     public GameObject trophy;
     MLO_TrophyScript trophy_script;
     int trophy_score;
@@ -15,7 +13,7 @@ public class MLO_RecordUIScript : MonoBehaviour
 
     void Start()
     {
-        game_handler_script = game_handler.GetComponent<MLO_GameHandlerScript>();
+        game_handler_script = game_handler.GetComponent<GameLoop>();
         trophy_script = trophy.GetComponent<MLO_TrophyScript>();
         trophy_score = game_handler_script.trophy_score;
     }
