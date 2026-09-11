@@ -1,6 +1,7 @@
 using FMODUnity;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
@@ -21,7 +22,7 @@ public class Movement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameLoop game_handler_script;
-    [SerializeField] private InputSubscription inputs;
+    [SerializeField] private InputActions inputs;
 
     [Header("FMOD Events")]
     public EventReference FMOD_jump_sound;
@@ -32,32 +33,27 @@ public class Movement : MonoBehaviour
     private FMOD.Studio.EventInstance music_instance;
     [SerializeField] private bool is_executing;
     private Vector3 start_position = new(0, 1, 0);
-    private bool is_initialized = false;
 
-    private IEnumerator Start()
+    private void Awake()
     {
         music_instance = RuntimeManager.CreateInstance(FMOD_music_sound);
         music_instance.start();
         music_instance.release();
-
-        yield return StartCoroutine(InitializePhysicsBuffer());
+        inputs = new InputActions();
     }
 
-    private IEnumerator InitializePhysicsBuffer()
+    private void OnEnable()
     {
-        is_initialized = false;
-        yield return new WaitForFixedUpdate();
-        is_initialized = true;
+        inputs.ActionMap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputs.ActionMap.Disable();
     }
 
     void Update()
-    {        
-        if (inputs.MenuInput)
-        {
-            SceneManager.LoadScene(0);
-            return;
-        }
-        if (!is_initialized) return;
+    {
         if (!is_executing)
         {
             if (!IsGrounded())
@@ -88,13 +84,10 @@ public class Movement : MonoBehaviour
 
     private Vector3 GetInputDirection()
     {
-        Vector2 input = inputs.AnalogMovementInput;
-        if (input.magnitude <= 0.9f) return Vector3.zero;
-        if (input.y > 0.9f) return Vector3.forward * jump_distance;
-        if (input.x > 0.9f) return Vector3.right * jump_distance;
-        if (input.y < -0.9f) return Vector3.back * jump_distance;
-        if (input.x < -0.9f) return Vector3.left * jump_distance;
-        return Vector3.zero;
+        Vector2 input = inputs.ActionMap.Movement.ReadValue<Vector2>();
+        if (input.sqrMagnitude < 0.1f) return Vector3.zero;
+        if (Mathf.Abs(input.x) > Mathf.Abs(input.y)) return (input.x > 0 ? Vector3.right : Vector3.left) * jump_distance;
+        else return (input.y > 0 ? Vector3.forward : Vector3.back) * jump_distance;
     }
 
     private IEnumerator PerformJump(Vector3 direction)
@@ -153,7 +146,6 @@ public class Movement : MonoBehaviour
         start_position = new Vector3(0, 1, 0);
         transform.position = start_position;
         is_executing = false;
-        StartCoroutine(InitializePhysicsBuffer());
     }
 
     private void OnDestroy()
@@ -165,7 +157,6 @@ public class Movement : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        // Match the exact transform calculation used in IsGrounded()
         Vector3 check_center = transform.TransformPoint(ground_check_offset);
         Gizmos.DrawWireSphere(check_center, ground_check_radius);
     }

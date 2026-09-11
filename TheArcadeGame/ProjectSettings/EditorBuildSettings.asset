@@ -233,5 +233,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Games/WHA_TimeAttack/WHA_Scenes/WHA_ChristmasTrackArthur.unity
     guid: 60b0079b767ae4954a4dc6601d7e4480
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4e7717baed5204446864761a8070d226, type: 3}
   m_UseUCBPForAssetBundles: 0
