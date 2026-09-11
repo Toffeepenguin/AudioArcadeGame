@@ -1,8 +1,6 @@
 using FMODUnity;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -14,6 +12,14 @@ public class Movement : MonoBehaviour
     [SerializeField] private float fallaway_distance;
     [SerializeField] private AnimationCurve fall_curve;
     [SerializeField] private float fall_distance;
+
+    [Header("Juice & visuals")]
+    [SerializeField] private Transform visual_mesh;
+    [SerializeField] private AnimationCurve squash_stretch_curve;
+    [SerializeField] private Vector2 jumping_squash_stretch;
+    [SerializeField] private float mesh_scale;
+    [SerializeField] private float landing_squash_duration;
+    [SerializeField] private Vector2 landing_squash_stretch;
 
     [Header("Ground Detection")]
     [SerializeField] private LayerMask ground_layer;
@@ -42,15 +48,9 @@ public class Movement : MonoBehaviour
         inputs = new InputActions();
     }
 
-    private void OnEnable()
-    {
-        inputs.ActionMap.Enable();
-    }
+    private void OnEnable() => inputs.ActionMap.Enable();
 
-    private void OnDisable()
-    {
-        inputs.ActionMap.Disable();
-    }
+    private void OnDisable() => inputs.ActionMap.Disable();
 
     void Update()
     {
@@ -89,7 +89,7 @@ public class Movement : MonoBehaviour
         if (Mathf.Abs(input.x) > Mathf.Abs(input.y)) return (input.x > 0 ? Vector3.right : Vector3.left) * jump_distance;
         else return (input.y > 0 ? Vector3.forward : Vector3.back) * jump_distance;
     }
-
+  
     private IEnumerator PerformJump(Vector3 direction)
     {
         is_executing = true;
@@ -98,42 +98,82 @@ public class Movement : MonoBehaviour
         Vector3 target_position = start_position + direction;
         float progress = 0f;
         float speed = game_handler_script.speed_multiplier;
+        Quaternion initial_mesh_rotation = visual_mesh.rotation;
+        Quaternion target_mesh_rotation = Random.Range(0, 5) == 0 ? Quaternion.AngleAxis(180f, Vector3.Cross(Vector3.up, direction.normalized)) * initial_mesh_rotation : visual_mesh.rotation;
         while (progress < 1f)
         {
             progress += Time.deltaTime * speed;
-            Vector3 current_position = Vector3.Lerp(start_position, target_position, progress);
-            current_position.y = start_position.y + (jump_curve.Evaluate(Mathf.Min(progress, 1f)) * jump_height);
+            float clamped_progress = Mathf.Min(progress, 1f);
+            Vector3 current_position = Vector3.Lerp(start_position, target_position, clamped_progress);
+            current_position.y = start_position.y + (jump_curve.Evaluate(clamped_progress) * jump_height);
             transform.position = current_position;
+            visual_mesh.rotation = Quaternion.Slerp(initial_mesh_rotation, target_mesh_rotation, 1f - clamped_progress);
+            if (squash_stretch_curve != null)
+            {
+                float air_stretch = squash_stretch_curve.Evaluate(clamped_progress);
+                visual_mesh.localScale = new Vector3(
+                    Mathf.Lerp(mesh_scale, jumping_squash_stretch.x, air_stretch), 
+                    Mathf.Lerp(mesh_scale, jumping_squash_stretch.y, air_stretch), 
+                    Mathf.Lerp(mesh_scale, jumping_squash_stretch.x, air_stretch));
+            }
             yield return null;
         }
         start_position = target_position;
         transform.position = start_position;
+        visual_mesh.rotation = target_mesh_rotation;
+        visual_mesh.localScale = Vector3.one * mesh_scale;
         if (IsGrounded())
         {
             game_handler_script.IncreaseScoreLevel(new Vector3(start_position.x, start_position.y - 0.85f, start_position.z));
             FMODAudioUtilsObject.Get3DAttRef(FMOD_land_sound, gameObject);
+            yield return StartCoroutine(PerformLandingSquash());
             is_executing = false;
         }
         else yield return StartCoroutine(PerformDeath(1));
     }
 
+    private IEnumerator PerformLandingSquash()
+    {
+        float elapsed = 0f;
+        Vector3 initial_mesh_local_pos = visual_mesh.localPosition;
+        while (elapsed < landing_squash_duration)
+        {
+            elapsed += Time.deltaTime;
+            float impact_intensity = Mathf.Sin(elapsed / landing_squash_duration * Mathf.PI);
+            float current_scale_x = Mathf.Lerp(mesh_scale, landing_squash_stretch.x, impact_intensity);
+            float current_scale_y = Mathf.Lerp(mesh_scale, landing_squash_stretch.y, impact_intensity);
+            visual_mesh.localScale = new Vector3(current_scale_x, current_scale_y, current_scale_x);
+            visual_mesh.localPosition = new Vector3(
+                initial_mesh_local_pos.x,
+                initial_mesh_local_pos.y - (mesh_scale - current_scale_y) * 0.5f,
+                initial_mesh_local_pos.z);
+            yield return null;
+        }
+        visual_mesh.localScale = Vector3.one * mesh_scale;
+        visual_mesh.localPosition = initial_mesh_local_pos;
+    }
+
     private IEnumerator PerformDeath(int type)
     {
-        
         is_executing = true;
         game_handler_script.Menu();
         FMODAudioUtilsObject.Get3DAttRef(FMOD_fall_sound, gameObject);
         float elapsed = 0f;
         bool halfway = false;
         Vector3 death_start_position = transform.position;
+        float tilt = 45f;
+        Quaternion target_rotation = Quaternion.Euler(
+            Random.Range(-tilt, tilt), 0f,
+            Random.Range(-tilt, tilt));
         while (elapsed < 1f)
         {
             elapsed += Time.deltaTime;
             transform.position = new Vector3(
-                death_start_position.x, 
-                ((type == 0 ? fallaway_curve : fall_curve).Evaluate(Mathf.Min(elapsed, 1f)) 
-                    * (type == 0 ? fallaway_distance : fall_distance)) - (type == 0 ? fallaway_distance : fall_distance) + 1, 
+                death_start_position.x,
+                ((type == 0 ? fallaway_curve : fall_curve).Evaluate(Mathf.Min(elapsed, 1f))
+                    * (type == 0 ? fallaway_distance : fall_distance)) - (type == 0 ? fallaway_distance : fall_distance) + 1,
                 death_start_position.z);
+            visual_mesh.rotation = Quaternion.Slerp(Quaternion.identity, target_rotation, Mathf.Min(elapsed, 1f));
             if (elapsed > .6f && !halfway) { game_handler_script.EndGame(); halfway = true; }
             yield return null;
         }
@@ -145,6 +185,11 @@ public class Movement : MonoBehaviour
         StopAllCoroutines();
         start_position = new Vector3(0, 1, 0);
         transform.position = start_position;
+        if (visual_mesh != null)
+        {
+            visual_mesh.rotation = Quaternion.identity;
+            visual_mesh.localScale = Vector3.one;
+        }
         is_executing = false;
     }
 

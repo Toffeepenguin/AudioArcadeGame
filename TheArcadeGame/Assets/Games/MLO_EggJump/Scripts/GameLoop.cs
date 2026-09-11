@@ -43,6 +43,7 @@ public class GameLoop : MonoBehaviour
 
     private void Start()
     {
+        transition_UI_script.gameObject.SetActive(true);
         if (land_particle_prefab != null) for (int i = 0; i < 4; i++)
         {
             GameObject obj = Instantiate(land_particle_prefab, new Vector3(1000f, 1000f, 1000f), Quaternion.identity);
@@ -64,10 +65,7 @@ public class GameLoop : MonoBehaviour
     public void EndGame()
     {
         started = false;
-        if (high_score < score)
-        {
-            high_score = score;
-        }
+        if (high_score < score) high_score = score;
         score = 0;
         level = 0;
         ended = true;
@@ -78,7 +76,8 @@ public class GameLoop : MonoBehaviour
 
     public void IncreaseScoreLevel(Vector3 platform_position)
     {
-        score ++;
+        score++;
+        if (score == trophy_score) GetTrophy.Invoke();
         GetScore.Invoke();
         if (particles.Count > 0)
         {
@@ -86,12 +85,17 @@ public class GameLoop : MonoBehaviour
             particles[current_particle_index].transform.position = platform_position;
             particles[current_particle_index].Emit(1);
         }
-        while (score >= 15f * Mathf.Pow(1.5f, level)) 
+        while (score >= 15f * Mathf.Pow(1.8f, level)) 
         {
             FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
             level++;
             GetLevel.Invoke();
         }
+    }
+
+    public bool SpawnTrophy()
+    {
+        return score == trophy_score - 1;
     }
 
     public void Menu()

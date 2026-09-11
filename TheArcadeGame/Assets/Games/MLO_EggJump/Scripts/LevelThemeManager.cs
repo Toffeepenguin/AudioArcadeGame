@@ -22,6 +22,7 @@ public class ColorThemeManager : MonoBehaviour
     [Header("Target Materials")]
     [SerializeField] private Material player_material;
     [SerializeField] private Material platform_material;
+    [SerializeField] private Material particle_material;
     [SerializeField] private Material background_material;
 
     private static readonly int hue_property = Shader.PropertyToID("_Hue");
@@ -40,6 +41,7 @@ public class ColorThemeManager : MonoBehaviour
             % level_themes.Count, 0, level_themes.Count - 1)];
         player_material.SetFloat(hue_property, target_theme.player_hue);
         platform_material.SetFloat(hue_property, target_theme.platform_hue);
+        particle_material.SetFloat(hue_property, target_theme.platform_hue + 0.02f);
         background_material.SetFloat(hue_property, target_theme.background_hue);
     }
 
@@ -51,26 +53,6 @@ public class ColorThemeManager : MonoBehaviour
         if (active_transition != null) StopCoroutine(active_transition);
         active_transition = StartCoroutine(TransitionToTheme(target_theme));
     }
-
-    //private IEnumerator TransitionToTheme(LevelTheme target)
-    //{
-    //    float elapsed = 0f;
-    //    float start_player = player_material.GetFloat(hue_property);
-    //    float start_platform = platform_material.GetFloat(hue_property);
-    //    float start_bg = background_material.GetFloat(hue_property);
-    //    while (elapsed < transition_duration)
-    //    {
-    //        elapsed += Time.deltaTime;
-    //        float progress = Mathf.Clamp01(elapsed / transition_duration);
-    //        player_material.SetFloat(hue_property, Mathf.Lerp(start_player, target.player_hue, progress));
-    //        platform_material.SetFloat(hue_property, Mathf.Lerp(start_platform, target.platform_hue, progress));
-    //        background_material.SetFloat(hue_property, Mathf.Lerp(start_bg, target.background_hue, progress));
-    //        yield return null;
-    //    }
-    //    player_material.SetFloat(hue_property, target.player_hue);
-    //    platform_material.SetFloat(hue_property, target.platform_hue);
-    //    background_material.SetFloat(hue_property, target.background_hue);
-    //}
 
     private IEnumerator TransitionToTheme(LevelTheme target)
     {
@@ -87,6 +69,7 @@ public class ColorThemeManager : MonoBehaviour
 
             player_material.SetFloat(hue_property, LerpHueShortestPath(start_player, target.player_hue, progress));
             platform_material.SetFloat(hue_property, LerpHueShortestPath(start_platform, target.platform_hue, progress));
+            particle_material.SetFloat(hue_property, LerpHueShortestPath(start_platform, target.platform_hue, progress) + 0.02f);
             background_material.SetFloat(hue_property, LerpHueShortestPath(start_bg, target.background_hue, progress));
 
             yield return null;
@@ -94,6 +77,7 @@ public class ColorThemeManager : MonoBehaviour
 
         player_material.SetFloat(hue_property, target.player_hue);
         platform_material.SetFloat(hue_property, target.platform_hue);
+        particle_material.SetFloat(hue_property, target.platform_hue + 0.02f);
         background_material.SetFloat(hue_property, target.background_hue);
     }
 

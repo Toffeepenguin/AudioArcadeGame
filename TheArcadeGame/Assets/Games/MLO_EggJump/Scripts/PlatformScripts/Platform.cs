@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Platform : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class Platform : MonoBehaviour
     private BoxCollider platform_collider;
     private MaterialPropertyBlock prop_block;
     public Vector2 transition_times;
-    private bool fallen = true;
+    protected bool fallen = true;
 
     void Awake()
     {
@@ -20,7 +21,7 @@ public class Platform : MonoBehaviour
     public void Rise(Vector3 pos)
     {
         if (!fallen) return;
-        transform.position = pos;
+        transform.SetPositionAndRotation(pos, Quaternion.identity);
         fallen = false;
         StopAllCoroutines();
         StartCoroutine(RiseRoutine());
@@ -55,19 +56,27 @@ public class Platform : MonoBehaviour
     {
         if (platform_collider != null) platform_collider.enabled = false;
         float elapsed = 0f;
+        float tilt = 15f;
+        Quaternion target_rotation = Quaternion.Euler(
+            Random.Range(-tilt, tilt), 0f,
+            Random.Range(-tilt, tilt));
         while (elapsed < transition_times.y)
         {
             if (transform.position.y <= -6.9f) break;
             float t = elapsed / transition_times.y;
             float cos = Mathf.Cos(t * Mathf.PI / 2f);
             SetAlpha(cos);
-            transform.position = new Vector3(transform.position.x, cos * 3f - 6f, transform.position.z);
+            transform.SetPositionAndRotation(
+                new Vector3(transform.position.x, cos * 3f - 6f, transform.position.z), 
+                Quaternion.Slerp(Quaternion.identity, target_rotation, t));
             elapsed += Time.deltaTime;
             yield return null;
         }
+        SetAlpha(0f);
+        transform.SetPositionAndRotation(new Vector3(transform.position.x, -6f, transform.position.z), Quaternion.identity);
     }
 
-    private void SetAlpha(float alpha)
+    protected void SetAlpha(float alpha)
     {
         platform_renderer.GetPropertyBlock(prop_block);
         Color c = platform_renderer.sharedMaterial.color;
