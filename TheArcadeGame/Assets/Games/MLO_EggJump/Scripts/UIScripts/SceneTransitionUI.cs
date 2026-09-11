@@ -5,6 +5,8 @@ using UnityEngine;
 public class MLO_TransitionScript : MonoBehaviour
 {
     RectTransform posControl;
+    [SerializeField] private int speed;
+    [SerializeField] private int spawn_height;
 
     private void Start()
     {
@@ -13,10 +15,10 @@ public class MLO_TransitionScript : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0, -25 * Time.deltaTime, 0);
+        transform.Translate(0, -speed * Time.deltaTime, 0);
     }
 
     public void Move() {
-        posControl.localPosition = new Vector2(0, 2000);
+        posControl.localPosition = new Vector2(0, spawn_height);
     }
 }

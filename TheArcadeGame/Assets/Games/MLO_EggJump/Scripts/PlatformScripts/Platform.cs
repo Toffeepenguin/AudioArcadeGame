@@ -5,7 +5,7 @@ public class Platform : MonoBehaviour
 {
     private MeshRenderer platform_renderer;
     private BoxCollider platform_collider;
-    private Color temp_col;
+    private MaterialPropertyBlock prop_block;
     public Vector2 transition_times;
     private bool fallen = true;
 
@@ -13,8 +13,8 @@ public class Platform : MonoBehaviour
     {
         platform_renderer = GetComponent<MeshRenderer>();
         platform_collider = GetComponent<BoxCollider>();
-        temp_col = platform_renderer.material.color;
-        platform_renderer.material.color = new Color(temp_col.r, temp_col.g, temp_col.b, 0);
+        prop_block = new MaterialPropertyBlock();
+        SetAlpha(0f);
     }
 
     public void Rise(Vector3 pos)
@@ -42,12 +42,13 @@ public class Platform : MonoBehaviour
         {
             float t = elapsed / transition_times.x;
             float sin = Mathf.Sin(t * Mathf.PI / 2f);
-            temp_col.a = sin;
-            platform_renderer.material.color = temp_col;
+            SetAlpha(sin);
             transform.position = new Vector3(transform.position.x, sin * 3f - 6f, transform.position.z);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        SetAlpha(1f);
+        transform.position = new Vector3(transform.position.x, -3f, transform.position.z);
     }
 
     private IEnumerator FallRoutine()
@@ -59,12 +60,20 @@ public class Platform : MonoBehaviour
             if (transform.position.y <= -6.9f) break;
             float t = elapsed / transition_times.y;
             float cos = Mathf.Cos(t * Mathf.PI / 2f);
-            temp_col.a = cos;
-            platform_renderer.material.color = temp_col;
+            SetAlpha(cos);
             transform.position = new Vector3(transform.position.x, cos * 3f - 6f, transform.position.z);
             elapsed += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        platform_renderer.GetPropertyBlock(prop_block);
+        Color c = platform_renderer.sharedMaterial.color;
+        c.a = alpha;
+        prop_block.SetColor("_Color", c);
+        platform_renderer.SetPropertyBlock(prop_block);
     }
 }
 

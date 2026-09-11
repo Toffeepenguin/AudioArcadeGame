@@ -24,13 +24,11 @@ public class GameLoop : MonoBehaviour
 
     private float lerp_count = 0f;
 
+    [Header("UI Group References")]
+    [SerializeField] private CanvasGroup gameplay_group;
+    [SerializeField] private CanvasGroup menu_group; 
     [SerializeField] private MLO_TransitionScript transition_UI_script;
-    [SerializeField] private TextMeshProUGUI score_rndr;
-    [SerializeField] private TextMeshProUGUI level_rndr;
-    [SerializeField] private TextMeshProUGUI logo_rndr;
-    [SerializeField] private TextMeshProUGUI record_rndr;
-    [SerializeField] private TextMeshProUGUI fee_rndr;
-   
+
     public EventReference FMOD_level_sound;
     public EventReference FMOD_coin_sound;
 
@@ -88,7 +86,7 @@ public class GameLoop : MonoBehaviour
             particles[current_particle_index].transform.position = platform_position;
             particles[current_particle_index].Emit(1);
         }
-        while (score >= 10f * Mathf.Pow(1.35f, level)) 
+        while (score >= 15f * Mathf.Pow(1.5f, level)) 
         {
             FMODAudioUtilsObject.Get3DAttRef(FMOD_level_sound, player);
             level++;
@@ -112,27 +110,26 @@ public class GameLoop : MonoBehaviour
                 GetHelp.Invoke();
             }
         }
-        if (started) {
+
+        if (started)
+        {
             lerp_count += Time.deltaTime;
-            float progress = lerp_count / 2f;
-            score_rndr.alpha = progress;
-            level_rndr.alpha = progress;
-            float inverse_progress = 1f - progress;
-            record_rndr.alpha = inverse_progress;
-            logo_rndr.alpha = inverse_progress;
-            fee_rndr.alpha = inverse_progress;
-            if (lerp_count > 2)
+            float progress = Mathf.Clamp01(lerp_count / 2f);
+
+            gameplay_group.alpha = progress;
+            menu_group.alpha = 1f - progress;
+
+            if (lerp_count > 2f)
             {
-                lerp_count = 0;
+                lerp_count = 0f;
                 started = false;
             }
         }
-        else if (ended) {
-            score_rndr.alpha = 0f;
-            level_rndr.alpha = 0f;
-            record_rndr.alpha = 1f;
-            logo_rndr.alpha = 1f;
-            fee_rndr.alpha = 1f;
+        else if (ended)
+        {
+            gameplay_group.alpha = 0f;
+            menu_group.alpha = 1f;
+
             ended = false;
         }
     }
