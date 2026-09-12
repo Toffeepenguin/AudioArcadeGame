@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private GameLoop game_handler_script;
-    [SerializeField] private InputActions inputs;
+    private InputActions inputs;
 
     [Header("FMOD Events")]
     public EventReference FMOD_jump_sound;
@@ -48,24 +48,33 @@ public class Movement : MonoBehaviour
         inputs = new InputActions();
     }
 
-    private void OnEnable() => inputs.ActionMap.Enable();
+    private void OnDisable() => DisableGameplayInputs();
 
-    private void OnDisable() => inputs.ActionMap.Disable();
+    public void EnableGameplayInputs()
+    {
+        inputs ??= new InputActions();
+        inputs?.Gameplay.Enable();
+    }
+
+    public void DisableGameplayInputs()
+    {
+        inputs?.Gameplay.Disable();
+    }
 
     void Update()
     {
-        if (!is_executing)
+        if (inputs == null || !inputs.Gameplay.enabled || is_executing) return;
+
+        if (!IsGrounded())
         {
-            if (!IsGrounded())
-            {
-                StartCoroutine(PerformDeath(0));
-                return;
-            }
-            Vector3 jump_direction = GetInputDirection();
-            if (jump_direction != Vector3.zero)
-            {
-                StartCoroutine(PerformJump(jump_direction));
-            }
+            StartCoroutine(PerformDeath(0));
+            return;
+        }
+
+        Vector3 jump_direction = GetInputDirection();
+        if (jump_direction != Vector3.zero)
+        {
+            StartCoroutine(PerformJump(jump_direction));
         }
     }
 
@@ -84,22 +93,55 @@ public class Movement : MonoBehaviour
 
     private Vector3 GetInputDirection()
     {
-        Vector2 input = inputs.ActionMap.Movement.ReadValue<Vector2>();
+        Vector2 input = inputs.Gameplay.Movement.ReadValue<Vector2>();
         if (input.sqrMagnitude < 0.1f) return Vector3.zero;
         if (Mathf.Abs(input.x) > Mathf.Abs(input.y)) return (input.x > 0 ? Vector3.right : Vector3.left) * jump_distance;
         else return (input.y > 0 ? Vector3.forward : Vector3.back) * jump_distance;
     }
-  
+
+    public enum JumpTrickType
+    {
+        None = 0,
+        FrontFlip = 1,
+        BackFlip = 2,
+        SideBarrelRollLeft = 3,
+        SideBarrelRollRight = 4
+    }
+
+    private Quaternion CalculateTargetRotation(Vector3 jumpDirection, Quaternion current_rotation)
+    {
+        int roll = Random.Range(0, 10);
+        JumpTrickType trick = roll switch
+        {
+            6 => JumpTrickType.FrontFlip,
+            7 => JumpTrickType.BackFlip,
+            8 => JumpTrickType.SideBarrelRollLeft,
+            9 => JumpTrickType.SideBarrelRollRight,
+            _ => JumpTrickType.None
+        };
+        Vector3 norm = jumpDirection.normalized;
+        Vector3 pitch_axis = Vector3.Cross(Vector3.up, norm);
+        Vector3 roll_axis = norm;
+        return trick switch
+        {
+            JumpTrickType.FrontFlip => Quaternion.AngleAxis(180f, pitch_axis) * current_rotation,
+            JumpTrickType.BackFlip => Quaternion.AngleAxis(-180f, pitch_axis) * current_rotation,
+            JumpTrickType.SideBarrelRollLeft => Quaternion.AngleAxis(180f, roll_axis) * current_rotation,
+            JumpTrickType.SideBarrelRollRight => Quaternion.AngleAxis(-180f, roll_axis) * current_rotation,
+            JumpTrickType.None or _ => current_rotation
+        };
+    }
+
     private IEnumerator PerformJump(Vector3 direction)
     {
         is_executing = true;
-        if (game_handler_script.score == 0) game_handler_script.StartGame();
+        if (game_handler_script.score == 0) game_handler_script.BeginGame();
         FMODAudioUtilsObject.Get3DAttRef(FMOD_jump_sound, gameObject);
         Vector3 target_position = start_position + direction;
         float progress = 0f;
         float speed = game_handler_script.speed_multiplier;
         Quaternion initial_mesh_rotation = visual_mesh.rotation;
-        Quaternion target_mesh_rotation = Random.Range(0, 5) == 0 ? Quaternion.AngleAxis(180f, Vector3.Cross(Vector3.up, direction.normalized)) * initial_mesh_rotation : visual_mesh.rotation;
+        Quaternion target_mesh_rotation = CalculateTargetRotation(direction, visual_mesh.rotation);
         while (progress < 1f)
         {
             progress += Time.deltaTime * speed;
@@ -159,7 +201,6 @@ public class Movement : MonoBehaviour
         game_handler_script.Menu();
         FMODAudioUtilsObject.Get3DAttRef(FMOD_fall_sound, gameObject);
         float elapsed = 0f;
-        bool halfway = false;
         Vector3 death_start_position = transform.position;
         float tilt = 45f;
         Quaternion target_rotation = Quaternion.Euler(
@@ -174,9 +215,9 @@ public class Movement : MonoBehaviour
                     * (type == 0 ? fallaway_distance : fall_distance)) - (type == 0 ? fallaway_distance : fall_distance) + 1,
                 death_start_position.z);
             visual_mesh.rotation = Quaternion.Slerp(Quaternion.identity, target_rotation, Mathf.Min(elapsed, 1f));
-            if (elapsed > .6f && !halfway) { game_handler_script.EndGame(); halfway = true; }
             yield return null;
         }
+        game_handler_script.EndGame();
         PlayerReset();
     }
 

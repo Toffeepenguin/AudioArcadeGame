@@ -5,7 +5,7 @@
 			<value>PlayerJump</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -137,7 +137,11 @@
 			<destination>{b313971c-597d-4636-a35d-f3e407c7fdc5}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{ae75b887-4334-4fa1-bcee-24b48682f8bd}" />
+	<object class="MixerBusPanner" id="{ae75b887-4334-4fa1-bcee-24b48682f8bd}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{c00a45f0-9496-4a87-8a7f-12faa92fe6d8}" />
 	<object class="SingleSound" id="{ad07ffae-c0d6-4a04-ae3a-ee650433f9c9}">
 		<relationship name="audioFile">

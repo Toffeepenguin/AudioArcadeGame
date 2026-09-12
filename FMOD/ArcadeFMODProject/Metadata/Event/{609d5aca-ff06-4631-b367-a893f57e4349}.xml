@@ -5,7 +5,7 @@
 			<value>PlatformRise</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -130,7 +130,11 @@
 			<destination>{0eec49fe-e17b-4b0b-ac6e-53bf081ede56}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{e0f844a8-0276-45c2-92af-f35e04d4e574}" />
+	<object class="MixerBusPanner" id="{e0f844a8-0276-45c2-92af-f35e04d4e574}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{5901ba43-1f56-4cca-9ffd-b4075d1a070b}" />
 	<object class="SingleSound" id="{9f05294f-e93b-46b1-8514-9392c9409eac}">
 		<relationship name="audioFile">

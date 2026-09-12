@@ -16,14 +16,6 @@ public static class FMODAudioUtilsObject
         return event_instance;
     }
 
-    public static FMOD.Studio.EventInstance GetUnattenuatedRef(FMODUnity.EventReference sound)
-    {
-        FMOD.Studio.EventInstance event_instance = FMODUnity.RuntimeManager.CreateInstance(sound);
-        PlayInstance(event_instance);
-        //Debug.Log($"UNATTENUATED SOUND: {sound.Path}");
-        return event_instance;
-    }
-
     public static void PlayInstance(FMOD.Studio.EventInstance event_instance)
     {
         event_instance.start();

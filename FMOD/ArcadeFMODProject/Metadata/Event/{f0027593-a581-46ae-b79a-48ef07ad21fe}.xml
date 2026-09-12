@@ -5,7 +5,7 @@
 			<value>Jumping_Game_Music</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{774557f7-9bd8-48f6-a8a6-2af20993426e}</destination>
@@ -138,7 +138,11 @@
 			<destination>{40144d2e-0271-4ddd-b984-4a3968960943}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{34b9966e-a84f-410d-b37e-d1cbb9bfd7d1}" />
+	<object class="MixerBusPanner" id="{34b9966e-a84f-410d-b37e-d1cbb9bfd7d1}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="Automator" id="{bd115f6a-331c-407c-9fe4-b3daa1bffaa5}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>pitch</value>

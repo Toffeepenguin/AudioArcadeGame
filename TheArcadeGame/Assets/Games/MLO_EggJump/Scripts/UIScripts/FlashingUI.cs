@@ -8,10 +8,12 @@ public class FlashingUI : MonoBehaviour
     [SerializeField] protected float flash_rate;
     [SerializeField] private bool continuous;
     [SerializeField] private int target_flash_count;
+    [SerializeField] private bool start_flashing;
+    [SerializeField] private bool end_disabled;
 
     private float timer;
     private int current_flash_count;
-    private bool flashing = true;
+    private bool flashing;
 
     private void Awake()
     {
@@ -21,11 +23,12 @@ public class FlashingUI : MonoBehaviour
     private void OnEnable()
     {
         ResetFlashing();
+        if (start_flashing) StartFlashing();
     }
 
     private void Update()
     {
-        if (!flashing) return;
+        if (!flashing || text == null) return;
         Tick();
     }
 
@@ -46,22 +49,22 @@ public class FlashingUI : MonoBehaviour
 
     public void StartFlashing()
     {
-        if (target_flash_count <= 0) continuous = true;
-        else continuous = false;
+        continuous = (target_flash_count <= 0);
         ResetFlashing();
+
+        flashing = true;
+        if (text != null) text.enabled = true;
     }
 
     public void ResetFlashing()
     {
         timer = 0f;
         current_flash_count = 0;
-        flashing = true;
-        if (text != null) text.enabled = true;
     }
 
     public void StopFlashing()
     {
         flashing = false;
-        if (text != null) text.enabled = true;
+        if (text != null) text.enabled = !end_disabled;
     }
 }

@@ -1,8 +1,11 @@
 using FMODUnity;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameLoop : MonoBehaviour
 {
@@ -16,8 +19,10 @@ public class GameLoop : MonoBehaviour
     private bool ended = true;
     public GameObject player;
 
-    [SerializeField] private PlatformHandler platform_handler;
-
+    [SerializeField] private PlatformHandler platform_handler; 
+    [SerializeField] private Movement movement_script;
+    [SerializeField] private Button start_button;
+    [SerializeField] private Trophy trophy_script;
     [SerializeField] private GameObject land_particle_prefab;
     private readonly List<ParticleSystem> particles = new();
     private int current_particle_index;
@@ -29,10 +34,15 @@ public class GameLoop : MonoBehaviour
     [SerializeField] private CanvasGroup menu_group; 
     [SerializeField] private MLO_TransitionScript transition_UI_script;
 
+    [Header("Input System")]
+    [SerializeField] private InputActionAsset input_actions;
+    [SerializeField] private Selectable initial_ui_element;
+
     public EventReference FMOD_level_sound;
     public EventReference FMOD_coin_sound;
 
     [SerializeField] private UnityEvent GameStarted;
+    [SerializeField] private UnityEvent GameBegan;
     [SerializeField] private UnityEvent GameEnded;
     [SerializeField] private UnityEvent GetScore;
     [SerializeField] private UnityEvent GetLevel;
@@ -50,16 +60,31 @@ public class GameLoop : MonoBehaviour
             if (obj.TryGetComponent(out ParticleSystem ps)) particles.Add(ps);
         }
         current_particle_index = 0;
+        input_actions.FindActionMap("UI")?.Enable();
+        FocusInitialUI();
     }
 
     public void StartGame()
     {
+        GameStarted.Invoke(); 
         started = true;
         ended = false;
         lerp_count = 0f;
-        FMODAudioUtilsObject.GetUnattenuatedRef(FMOD_coin_sound);
+        FMODAudioUtilsObject.Get3DAttRef(FMOD_coin_sound, player);
+        start_button.interactable = false;
+
+        menu_group.blocksRaycasts = false;
+        menu_group.interactable = false;
+
+        input_actions.FindActionMap("UI")?.Disable();
+        EventSystem.current.SetSelectedGameObject(null);
+        movement_script.EnableGameplayInputs();
+    }
+
+    public void BeginGame()
+    {
         wait = false;
-        GameStarted.Invoke();
+        GameBegan.Invoke();
     }
 
     public void EndGame()
@@ -71,19 +96,42 @@ public class GameLoop : MonoBehaviour
         ended = true;
         wait = true;
         wait_count = 0f;
+        start_button.interactable = true;
         GameEnded.Invoke();
+
+        menu_group.blocksRaycasts = true;
+        menu_group.interactable = true;
+
+        movement_script.DisableGameplayInputs();
+        input_actions.FindActionMap("UI")?.Enable();
+        FocusInitialUI();
+    }
+
+    private void FocusInitialUI()
+    {
+        if (initial_ui_element != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(initial_ui_element.gameObject);
+        }
     }
 
     public void IncreaseScoreLevel(Vector3 platform_position)
     {
         score++;
-        if (score == trophy_score) GetTrophy.Invoke();
+        if (score == trophy_score)
+        {
+            GetTrophy.Invoke();
+            trophy_script.TriggerTrophy(movement_script.transform);
+        }
         GetScore.Invoke();
         if (particles.Count > 0)
         {
             current_particle_index = (current_particle_index + 1) % particles.Count;
-            particles[current_particle_index].transform.position = platform_position;
-            particles[current_particle_index].Emit(1);
+            ParticleSystem ps = particles[current_particle_index];
+            ps.transform.position = platform_position;
+            ps.Clear();
+            ps.Emit(1);
         }
         while (score >= 15f * Mathf.Pow(1.8f, level)) 
         {
@@ -91,11 +139,6 @@ public class GameLoop : MonoBehaviour
             level++;
             GetLevel.Invoke();
         }
-    }
-
-    public bool SpawnTrophy()
-    {
-        return score == trophy_score - 1;
     }
 
     public void Menu()
@@ -118,17 +161,18 @@ public class GameLoop : MonoBehaviour
         if (started)
         {
             lerp_count += Time.deltaTime;
-            float progress = Mathf.Clamp01(lerp_count / 2f);
+            float progress = Mathf.Clamp01(lerp_count / 1.5f);
 
             gameplay_group.alpha = progress;
             menu_group.alpha = 1f - progress;
 
-            if (lerp_count > 2f)
+            if (lerp_count > 1.5f)
             {
                 lerp_count = 0f;
                 started = false;
             }
         }
+
         else if (ended)
         {
             gameplay_group.alpha = 0f;

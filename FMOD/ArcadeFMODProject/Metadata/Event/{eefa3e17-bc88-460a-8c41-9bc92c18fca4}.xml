@@ -5,7 +5,7 @@
 			<value>PlayerLand</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -125,7 +125,11 @@
 			<destination>{40b4d98f-b376-477d-8217-dd3bcd9a5715}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{d9e19af0-5171-4d4d-884a-6f10a7dd9d92}" />
+	<object class="MixerBusPanner" id="{d9e19af0-5171-4d4d-884a-6f10a7dd9d92}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{856eb387-f429-4955-a7d3-05c5d27409f5}" />
 	<object class="MixerBusEffectChain" id="{f6c20d83-e66d-4ae7-92f7-db8c49f04657}">
 		<relationship name="effects">

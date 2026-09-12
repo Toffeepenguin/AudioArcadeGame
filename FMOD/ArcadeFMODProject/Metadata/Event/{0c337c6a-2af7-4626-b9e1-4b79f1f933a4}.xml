@@ -5,7 +5,7 @@
 			<value>PlayerLevel</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -104,7 +104,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{41f9fefc-bb64-46a4-b7d8-3f1211299b1b}">
 		<property name="volume">
-			<value>8</value>
+			<value>-1.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -124,7 +124,11 @@
 			<destination>{1a89b6bd-5537-4654-8ceb-da6a76655be8}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{31cd25e7-1c18-4cf6-8b7e-79752f27ddfe}" />
+	<object class="MixerBusPanner" id="{31cd25e7-1c18-4cf6-8b7e-79752f27ddfe}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{872e63f9-51b7-4420-b3b1-4b1538ff859e}" />
 	<object class="MixerBusEffectChain" id="{e27405d0-0da0-4088-ab43-b4d65131e06c}">
 		<relationship name="effects">

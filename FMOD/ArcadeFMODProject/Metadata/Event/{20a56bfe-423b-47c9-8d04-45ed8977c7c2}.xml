@@ -5,7 +5,7 @@
 			<value>PlayerFall</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -127,7 +127,11 @@
 			<destination>{b736c5c5-311d-41cd-95c3-f78ad083ecf7}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{5a994422-3590-40df-8acf-c64835d88e12}" />
+	<object class="MixerBusPanner" id="{5a994422-3590-40df-8acf-c64835d88e12}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{07fd65d6-b561-4f8c-8df0-267a85b6b8e7}" />
 	<object class="SingleSound" id="{86381651-833e-4807-87b9-12306b48cfd3}">
 		<relationship name="audioFile">

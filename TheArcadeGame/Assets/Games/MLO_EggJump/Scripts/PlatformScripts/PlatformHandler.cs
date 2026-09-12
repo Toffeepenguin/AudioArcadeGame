@@ -34,7 +34,6 @@ public class PlatformHandler : MonoBehaviour
     {
         current_direction = Random.Range(0, 4);
         for (int i = 0; i < platform_count; i++) platforms.Add(Instantiate(platform, Vector3.up * 500, Quaternion.identity));
-        PositionNewPlatform();
     }
 
     public void PositionNewPlatform() 
@@ -46,7 +45,6 @@ public class PlatformHandler : MonoBehaviour
         location = new Vector3(location.x + next_direction_offset.x, -3, location.z + next_direction_offset.y);
         int next = (current_platform_index + 1) % platform_count;
         platforms[current_platform_index].GetComponent<Platform>().Rise(location);
-        if (game_handler_script.SpawnTrophy()) trophy_script.SpawnTrophy(location + Vector3.up * 3);
         platforms[next].GetComponent<Platform>().Fall();
         current_platform_index = next;
         FMODAudioUtilsObject.Get3DAttRef(FMOD_platform_rise_sound, platforms[current_platform_index].gameObject);
@@ -72,6 +70,11 @@ public class PlatformHandler : MonoBehaviour
 
     public void StartGame()
     {
+        PositionNewPlatform();
+    }
+
+    public void BeginGame()
+    {
         playing = true;
     }
 
@@ -81,6 +84,5 @@ public class PlatformHandler : MonoBehaviour
         playing = false;
         location = new Vector3(0, -3, 0);
         platform_interval = 1f;
-        PositionNewPlatform();
     }
 }

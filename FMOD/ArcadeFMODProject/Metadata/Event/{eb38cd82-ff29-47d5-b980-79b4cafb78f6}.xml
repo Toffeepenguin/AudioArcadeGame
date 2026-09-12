@@ -5,7 +5,7 @@
 			<value>EnterCoin</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3d5516a4-5da6-40ac-9817-61d5cf18327e}</destination>
@@ -104,7 +104,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{1eb0752b-cf93-4db8-bcb5-4682271d4c0b}">
 		<property name="volume">
-			<value>10</value>
+			<value>-15</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -125,7 +125,11 @@
 			<destination>{00b57e25-cd4a-4504-b23e-e72f573b6cf2}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{fdd5b9bd-7041-4de0-91fc-97f9f0f4c0f1}" />
+	<object class="MixerBusPanner" id="{fdd5b9bd-7041-4de0-91fc-97f9f0f4c0f1}">
+		<property name="overridingOutputFormat">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{cfbe1cc1-edcf-44d3-9851-963c3bb39fdb}" />
 	<object class="MixerBusEffectChain" id="{a2f1445b-ca51-4b43-820f-2d543d7092b7}">
 		<relationship name="effects">
